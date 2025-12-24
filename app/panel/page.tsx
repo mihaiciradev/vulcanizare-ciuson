@@ -174,7 +174,7 @@ export default function AdminPanel() {
             )}
           </div>
 
-          <div className="flex justify-center pt-6 gap-6">
+          <div className="flex justify-center flex-col md:flex-row pt-6 gap-6">
             <Button
               onClick={handleSave}
               disabled={saving || prices.length === 0}
