@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="flex-1 h-px bg-dark/20" />
             <div className="px-8">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.svg"
                 alt="Vulcanizare Ciuson Logo"
                 width={180}
                 height={60}
@@ -25,7 +25,7 @@ export default function Footer() {
 
           <div className="md:hidden">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.svg"
               alt="Vulcanizare Ciuson Logo"
               width={160}
               height={50}
