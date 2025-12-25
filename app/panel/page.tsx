@@ -10,16 +10,6 @@ import { ref, onValue, set } from "firebase/database";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
-export const metadata = {
-  robots: {
-    index: false,
-    follow: false,
-    googleBot: {
-      index: false,
-      follow: false,
-    },
-  },
-};
 interface PriceItem {
   id: string;
   name: string;
