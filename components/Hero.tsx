@@ -1,6 +1,9 @@
+"use client";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "@/lib/firebase";
 
 export default function Hero() {
   return (
@@ -38,7 +41,16 @@ export default function Hero() {
             className="bg-orange hover:bg-orange/90 text-white font-semibold px-10 py-6 rounded-full shadow-xl flex items-center gap-3 text-lg min-w-[220px]"
             asChild
           >
-            <a href="tel:+40712345678">
+            <a
+              href="tel:+40712345678"
+              onClick={() => {
+                if (analytics) {
+                  logEvent(analytics, "call_button_click", {
+                    page: "preturi",
+                  });
+                }
+              }}
+            >
               <Phone className="w-6 h-6" />
               Sună acum
             </a>
@@ -50,7 +62,16 @@ export default function Hero() {
         </div>
 
         <div className="flex justify-center">
-          <div className="group cursor-pointer">
+          <a
+            href="#services"
+            className="group cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector("#services")?.scrollIntoView({
+                behavior: "smooth",
+              });
+            }}
+          >
             <Image
               src="/images/hero_section_arrow.svg"
               alt="Derulează în jos"
@@ -58,7 +79,7 @@ export default function Hero() {
               height={36}
               className="opacity-60 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"
             />
-          </div>
+          </a>
         </div>
       </div>
     </section>

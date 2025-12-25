@@ -6,6 +6,8 @@ import { Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { db } from "@/lib/firebase";
 import { ref, onValue } from "firebase/database";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "@/lib/firebase";
 
 interface PriceItem {
   id: string;
@@ -102,7 +104,16 @@ export default function Preturi() {
                 asChild
                 className="bg-orange hover:bg-orange/90 text-white font-semibold px-8 py-5 rounded-full shadow-xl flex items-center gap-3 text-base"
               >
-                <a href="tel:+40761627184">
+                <a
+                  href="tel:+40761627184"
+                  onClick={() => {
+                    if (analytics) {
+                      logEvent(analytics, "call_button_click", {
+                        page: "preturi",
+                      });
+                    }
+                  }}
+                >
                   <Phone className="w-5 h-5" />
                   Sună acum
                 </a>

@@ -30,7 +30,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="relative bg-beige py-16 md:py-24">
+    <section id="services" className="relative py-16 md:py-24">
       <div className="relative">
         <AnimatedWheelBar />
 

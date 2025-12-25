@@ -1,5 +1,8 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "@/lib/firebase";
 
 export default function Contact() {
   return (
@@ -31,6 +34,13 @@ export default function Contact() {
                 <a
                   href="tel:+40761627184"
                   className="text-dark hover:text-orange flex items-center gap-2 transition-colors"
+                  onClick={() => {
+                    if (analytics) {
+                      logEvent(analytics, "call_button_click", {
+                        page: "preturi",
+                      });
+                    }
+                  }}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "@/lib/firebase";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -66,6 +68,13 @@ export default function Navbar() {
             <a
               href="tel:+40761627184"
               className="flex items-center gap-2 text-white/90 hover:text-orange font-medium text-base transition-colors"
+              onClick={() => {
+                if (analytics) {
+                  logEvent(analytics, "call_button_click", {
+                    page: "preturi",
+                  });
+                }
+              }}
             >
               <Phone className="w-5 h-5" />
               <span className="hidden md:inline">+40 761 627 184</span>
