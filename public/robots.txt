@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Blochează explicit paginile private
+Disallow: /login
+Disallow: /panel
+
+Sitemap: https://vulcanizare-ciuson.ro/sitemap.xml
