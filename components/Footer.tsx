@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="flex-1 h-px bg-dark/20" />
             <div className="px-8">
               <Image
-                src="/images/logo.svg"
+                src="/images/logo_footer.svg"
                 alt="Vulcanizare Ciuson Logo"
                 width={180}
                 height={60}

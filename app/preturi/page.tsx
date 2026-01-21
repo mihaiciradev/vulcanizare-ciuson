@@ -54,7 +54,9 @@ export default function Preturi() {
     <div className="min-h-screen bg-beige py-12 md:py-16 px-6">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-center gap-4 mb-8 md:mb-12 mt-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-dark">Prețuri</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-dark">
+            Prețuri spălătorie
+          </h1>
           <Image
             src="/images/little_mechanic.svg"
             alt=""
