@@ -6,7 +6,7 @@ import { analytics } from "@/lib/firebase";
 
 export default function Contact() {
   return (
-    <section className="bg-beige py-12 md:py-16">
+    <section className="py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="space-y-4 order-2 lg:order-1">

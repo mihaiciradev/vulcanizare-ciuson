@@ -38,7 +38,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.svg"
               alt="Vulcanizare Ciuson"
               width={160}
               height={50}
