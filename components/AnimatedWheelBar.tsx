@@ -20,7 +20,7 @@ export default function AnimatedWheelBar() {
         const maxY = sectionHeight - wheelSize;
 
         const scrolledIntoSection = -rect.top;
-        const fastY = scrolledIntoSection * 2.0;
+        const fastY = scrolledIntoSection * 1.3;
         const clampedY = Math.max(0, Math.min(maxY, fastY));
         const rotation = clampedY * 2.4;
 
