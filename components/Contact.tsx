@@ -71,7 +71,7 @@ export default function Contact() {
 
             <div className="w-full max-w-md mx-auto lg:mx-0 aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2522.169044178749!2d21.170918175772744!3d45.68921561839775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47455d8d5db8aafb%3A0x95407ff170160231!2sVulcanizare%20Ciuson%20-%20ANVELOPE%20AGRICOLE%20TIR%20SI%20INDUSTRIALE!5e1!3m2!1sen!2sro!4v1766582750905!5m2!1sen!2sro"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2603.9340434700484!2d21.171664291577247!3d45.68839732149195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47455d8d5db8aafb%3A0x95407ff170160231!2sVulcanizare%20Ciuson%20-%20ANVELOPE%20AGRICOLE%20TIR%20SI%20INDUSTRIALE!5e0!3m2!1sen!2sro!4v1778935144963!5m2!1sen!2sro"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
