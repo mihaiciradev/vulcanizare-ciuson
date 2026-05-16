@@ -30,45 +30,59 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-16 md:py-24">
+    <section id="services" className="relative py-20 md:py-32">
       <div className="relative">
         <AnimatedWheelBar />
 
         <div className="max-w-5xl mx-auto px-6 lg:pr-32">
-          <div className="flex items-center justify-center gap-4 mb-16 md:mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-dark">
-              Serviciile noastre
-            </h2>
-            <Image
-              src="/images/little_mechanic.svg"
-              alt=""
-              width={60}
-              height={60}
-              className="w-14 md:w-16"
-            />
+          {/* Section heading */}
+          <div className="flex flex-col items-center mb-16 md:mb-24">
+            <span className="text-orange/80 text-xs font-bold tracking-[0.35em] uppercase mb-3">
+              Ce oferim
+            </span>
+            <div className="flex items-center gap-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-dark">
+                Serviciile noastre
+              </h2>
+              <Image
+                src="/images/little_mechanic.svg"
+                alt=""
+                width={60}
+                height={60}
+                className="w-14 md:w-16"
+              />
+            </div>
+            <div className="mt-4 w-16 h-1 rounded-full bg-orange/50" />
           </div>
 
-          <div className="space-y-20 md:space-y-28">
+          <div className="space-y-6 md:space-y-8">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="flex flex-col lg:flex-row items-center lg:items-start gap-10"
+                className="group flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12 p-8 md:p-10 rounded-2xl border border-transparent hover:border-orange/15 hover:bg-dark/[0.03] transition-all duration-300"
               >
-                <div className="flex-shrink-0">
+                {/* Number + image */}
+                <div className="flex-shrink-0 relative flex flex-col items-center gap-2">
+                  <span className="text-5xl font-black text-dark/8 leading-none select-none">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <Image
                     src={service.image}
                     alt={service.title}
-                    width={180}
-                    height={150}
-                    className="object-contain drop-shadow-md hover:scale-105 transition-transform duration-300"
+                    width={170}
+                    height={140}
+                    className="object-contain drop-shadow-md group-hover:scale-105 group-hover:drop-shadow-xl transition-all duration-300"
                   />
                 </div>
 
+                {/* Text */}
                 <div className="flex-1 text-center lg:text-left">
-                  <h3 className="text-2xl md:text-3xl font-bold text-dark mb-4">
+                  {/* Orange accent bar (desktop only) */}
+                  <div className="hidden lg:block w-8 h-0.5 bg-orange/60 mb-4 group-hover:w-14 transition-all duration-300" />
+                  <h3 className="text-2xl md:text-3xl font-bold text-dark mb-4 group-hover:text-orange/90 transition-colors duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-base md:text-lg text-dark/80 leading-relaxed">
+                  <p className="text-base md:text-lg text-dark/70 leading-relaxed">
                     {service.description}
                   </p>
                 </div>
