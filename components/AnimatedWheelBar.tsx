@@ -1,36 +1,42 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function AnimatedWheelBar() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [wheelY, setWheelY] = useState(0);
+  const wheelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let rafId: number;
+
     const handleScroll = () => {
-      if (!containerRef.current) return;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!containerRef.current || !wheelRef.current) return;
 
-      const rect = containerRef.current.getBoundingClientRect();
-      const sectionHeight = containerRef.current.offsetHeight;
-      const wheelSize = 48;
-      const maxY = sectionHeight - wheelSize;
+        const rect = containerRef.current.getBoundingClientRect();
+        const sectionHeight = containerRef.current.offsetHeight;
+        const wheelSize = 48;
+        const maxY = sectionHeight - wheelSize;
 
-      // Distance scrolled past the top of this section
-      const scrolledIntoSection = -rect.top;
+        const scrolledIntoSection = -rect.top;
+        const fastY = scrolledIntoSection * 2.0;
+        const clampedY = Math.max(0, Math.min(maxY, fastY));
+        const rotation = clampedY * 2.4;
 
-      // Move at 2x the page scroll speed
-      const fastY = scrolledIntoSection * 2.0;
-
-      setWheelY(Math.max(0, Math.min(maxY, fastY)));
+        // Direct DOM mutation — no React re-render, no lag
+        wheelRef.current.style.top = `${clampedY}px`;
+        wheelRef.current.style.transform = `translateX(-50%) rotate(${rotation}deg)`;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
-
-  // Simulate rolling: wheel diameter ~48px, circumference ~150px → ~2.4 deg/px
-  const rotation = wheelY * 2.4;
 
   return (
     <div
@@ -46,13 +52,11 @@ export default function AnimatedWheelBar() {
         }}
       />
 
-      {/* Rolling wheel */}
+      {/* Rolling wheel — position driven directly via style ref, no state */}
       <div
+        ref={wheelRef}
         className="absolute left-1/2 z-20"
-        style={{
-          top: wheelY,
-          transform: `translateX(-50%) rotate(${rotation}deg)`,
-        }}
+        style={{ top: 0, transform: "translateX(-50%) rotate(0deg)" }}
       >
         <Image
           src="/images/servicii_movingwheel.svg"
