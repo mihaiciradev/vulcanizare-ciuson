@@ -1,95 +1,122 @@
+"use client";
 import Image from "next/image";
-import AnimatedWheelBar from "./AnimatedWheelBar";
+import { motion } from "framer-motion";
 
 const services = [
   {
+    id: "01",
     title: "VULCANIZARE",
-    image: "/images/serviciu_vulcanizare.png",
+    icon: "/images/serviciu_vulcanizare.png",
     description:
-      "De la bicicletă până la tractor, noi le facem pe toate! Serviciul nostru de vulcanizare oferă soluții profesionale pentru orice tip de vehicul. Folosim tehnologie de ultimă generație și materiale premium pentru a asigura siguranța și longevitatea anvelopelor dumneavoastră.",
+      "Professional tire repair with latest technology. De la bicicletă până la tractor, noi le facem pe toate!",
   },
   {
+    id: "02",
     title: "VULCANIZARE MOBILĂ",
-    image: "/images/serviciu_vulcanizare_mobila.png",
+    icon: "/images/serviciu_vulcanizare_mobila.png",
     description:
-      "Serviciul nostru mobil vine la dumneavoastră oriunde în Timișoara și împrejurimi, 24/7! Fie că sunteți blocat pe marginea drumului sau preferați confortul locației proprii, echipa noastră vine echipată cu toate sculele necesare pentru a rezolva orice problemă cu anvelopele.",
+      "Mobile service 24/7 in Timișoara area. Fie că sunteți blocat pe marginea drumului, echipa noastră vine la dumneavoastră.",
   },
   {
-    title: "REPARAȚII ANVELOPE LA CALD",
-    image: "/images/serviciu_reparatii.png",
+    id: "03",
+    title: "REPARAȚII ANVELOPE",
+    icon: "/images/serviciu_reparatii.png",
     description:
-      "Specializați în repararea anvelopelor de orice dimensiune – de la autoturisme până la camioane și utilaje agricole! Reparăm anvelope pentru tractoare și alte utilaje grele, oferind soluții durabile și profesionale pentru a prelungi viața anvelopelor dumneavoastră.",
+      "Cold/hot repairs for all vehicle types. Specializați în repararea anvelopelor de orice dimensiune.",
   },
   {
+    id: "04",
     title: "SPĂLĂTORIE AUTO",
-    image: "/images/serviciu_spalatorie.png",
+    icon: "/images/serviciu_spalatorie.png",
     description:
-      "Servicii complete de spălătorie auto, incluzând curățare interior, polish, ceruire și tratamente ceramice. Folosim detergenți premium și tehnologii moderne pentru a asigura că vehiculul dumneavoastră strălucește ca nou. Oferim pachete personalizate pentru toate tipurile de vehicule.",
+      "Complete car washing & detailing. Servicii premium incluzând interior cleaning, wax și ceramic treatments.",
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
 export default function Services() {
   return (
-    <section id="services" className="relative py-20 md:py-32">
-      <div className="relative">
-        <AnimatedWheelBar />
+    <section id="services" className="relative py-16 sm:py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section header */}
+        <motion.div
+          className="text-center mb-12 sm:mb-16 md:mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <p className="text-orange text-xs sm:text-sm font-bold tracking-widest uppercase mb-3">
+            CE OFERIM
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-light mb-4">
+            Servicii vulcanizare în Timișoara și Șag
+          </h2>
+          <div className="w-12 h-1 bg-orange rounded-full mx-auto" />
+        </motion.div>
 
-        <div className="max-w-5xl mx-auto px-6 lg:pr-32">
-          {/* Section heading */}
-          <div className="flex flex-col items-center mb-16 md:mb-24">
-            <span className="text-orange/80 text-xs font-bold tracking-[0.35em] uppercase mb-3">
-              Ce oferim
-            </span>
-            <div className="flex items-center gap-4">
-              <h2 className="text-4xl md:text-5xl font-bold text-dark">
-                Serviciile noastre
-              </h2>
-              <Image
-                src="/images/little_mechanic.svg"
-                alt=""
-                width={60}
-                height={60}
-                className="w-14 md:w-16"
-              />
-            </div>
-            <div className="mt-4 w-16 h-1 rounded-full bg-orange/50" />
-          </div>
-
-          <div className="space-y-6 md:space-y-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="group flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12 p-8 md:p-10 rounded-2xl border border-transparent hover:border-orange/15 hover:bg-dark/[0.03] transition-all duration-300"
-              >
-                {/* Number + image */}
-                <div className="flex-shrink-0 relative flex flex-col items-center gap-2">
-                  <span className="text-5xl font-black text-dark/8 leading-none select-none">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    width={170}
-                    height={140}
-                    className="object-contain drop-shadow-md group-hover:scale-105 group-hover:drop-shadow-xl transition-all duration-300"
-                  />
-                </div>
-
-                {/* Text */}
-                <div className="flex-1 text-center lg:text-left">
-                  {/* Orange accent bar (desktop only) */}
-                  <div className="hidden lg:block w-8 h-0.5 bg-orange/60 mb-4 group-hover:w-14 transition-all duration-300" />
-                  <h3 className="text-2xl md:text-3xl font-bold text-dark mb-4 group-hover:text-orange/90 transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-base md:text-lg text-dark/70 leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
+        {/* Services grid */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {services.map((service) => (
+            <motion.div
+              key={service.id}
+              variants={cardVariants}
+              className="group relative glass-effect rounded-2xl p-6 sm:p-8 hover:shadow-2xl hover:shadow-orange/30 cursor-pointer transition-shadow duration-300"
+            >
+              {/* Number badge */}
+              <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-orange/10 group-hover:bg-orange/20 mb-4 sm:mb-6 transition-colors">
+                <span className="text-lg sm:text-xl font-bold text-orange">
+                  {service.id}
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
+
+              {/* Icon */}
+              <div className="relative h-32 sm:h-40 mb-6 sm:mb-8 flex items-center justify-center overflow-hidden rounded-xl">
+                <Image
+                  src={service.icon}
+                  alt={service.title}
+                  width={160}
+                  height={160}
+                  className="object-contain group-hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+
+              {/* Content */}
+              <h3 className="text-xl sm:text-2xl font-bold text-text-light mb-3 group-hover:text-orange transition-colors">
+                {service.title}
+              </h3>
+              <p className="text-sm sm:text-base text-text-muted leading-relaxed">
+                {service.description}
+              </p>
+
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

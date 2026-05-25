@@ -1,12 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { db } from "@/lib/firebase";
 import { ref, onValue } from "firebase/database";
-import { logEvent } from "firebase/analytics";
+import { motion } from "framer-motion";
 import { analytics } from "@/lib/firebase";
 
 interface PriceItem {
@@ -30,7 +28,6 @@ export default function Preturi() {
           name: data[key].name,
           price: data[key].price,
         }));
-        // Sortăm alfabetic după nume (opțional, dar frumos)
         loadedPrices.sort((a, b) => a.name.localeCompare(b.name));
         setPrices(loadedPrices);
       } else {
@@ -44,85 +41,100 @@ export default function Preturi() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-beige flex items-center justify-center">
-        <p className="text-2xl text-dark">Se încarcă prețurile...</p>
+      <div className="min-h-screen bg-dark-bg flex items-center justify-center pt-20">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange mx-auto mb-4" />
+          <p className="text-lg text-text-muted">Se încarcă prețurile...</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-beige py-12 md:py-16 px-6">
+    <div className="min-h-screen bg-dark-bg pt-24 sm:pt-28 pb-20 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
-        <div className="flex items-center justify-center gap-4 mb-8 md:mb-12 mt-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-dark">
-            Prețuri spălătorie
+        {/* Header */}
+        <motion.div
+          className="text-center mb-12 sm:mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-text-light mb-4">
+            Prețuri Servicii
           </h1>
-          <Image
-            src="/images/little_mechanic.svg"
-            alt=""
-            width={60}
-            height={60}
-            className="w-14 md:w-16"
-          />
-        </div>
+          <p className="text-text-muted text-base sm:text-lg">
+            Transparent și accesibil pentru toți clienții
+          </p>
+        </motion.div>
 
-        <div className="relative pb-20 md:pb-24">
-          {prices.length === 0 ? (
-            <p className="text-center text-xl text-dark/70 py-12">
+        {/* Prices table */}
+        {prices.length === 0 ? (
+          <motion.div
+            className="text-center py-16 glass-effect rounded-2xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-xl text-text-muted">
               Momentan nu sunt disponibile prețuri. Reveniți mai târziu!
             </p>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full max-w-3xl mx-auto border-collapse">
-                <thead>
-                  <tr className="border-b border-dark/20">
-                    <th className="text-left py-3 px-4 text-lg font-semibold text-dark">
-                      Serviciu
-                    </th>
-                    <th className="text-right py-3 px-4 text-lg font-semibold text-dark">
-                      Preț
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {prices.map((item) => (
-                    <tr key={item.id} className="border-b border-dark/10">
-                      <td className="py-2 px-4 text-base text-dark/90">
-                        {item.name}
-                      </td>
-                      <td className="py-2 px-4 text-right text-base font-medium text-dark">
-                        {item.price}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+          </motion.div>
+        ) : (
+          <motion.div
+            className="overflow-x-auto glass-effect rounded-2xl p-6 sm:p-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-orange/20">
+                  <th className="text-left py-4 px-4 text-base sm:text-lg font-bold text-text-light">
+                    Serviciu
+                  </th>
+                  <th className="text-right py-4 px-4 text-base sm:text-lg font-bold text-text-light">
+                    Preț
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {prices.map((item, index) => (
+                  <motion.tr
+                    key={item.id}
+                    className="border-b border-orange/10 hover:bg-orange/5 transition-colors"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                  >
+                    <td className="py-3 sm:py-4 px-4 text-sm sm:text-base text-text-light">
+                      {item.name}
+                    </td>
+                    <td className="py-3 sm:py-4 px-4 text-right text-base sm:text-lg font-bold text-orange">
+                      {item.price}
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </motion.div>
+        )}
 
-          <div className="sticky bottom-6 z-40 mt-8">
-            <div className="flex justify-center">
-              <Button
-                asChild
-                className="bg-orange hover:bg-orange/90 text-white font-semibold px-8 py-5 rounded-full shadow-xl flex items-center gap-3 text-base"
-              >
-                <a
-                  href="tel:+40761627184"
-                  onClick={() => {
-                    if (analytics) {
-                      logEvent(analytics, "call_button_click", {
-                        page: "preturi",
-                      });
-                    }
-                  }}
-                >
-                  <Phone className="w-5 h-5" />
-                  Sună acum
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
+        {/* CTA Button */}
+        <motion.div
+          className="flex justify-center mt-12 sm:mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <a
+            href="tel:+40761627184"
+            className="inline-flex items-center gap-3 bg-orange hover:bg-orange/90 text-white font-bold px-8 sm:px-10 py-4 rounded-full shadow-lg shadow-orange/40 hover:shadow-orange/60 text-base sm:text-lg transition-all hover:scale-105 active:scale-95"
+          >
+            <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
+            Sună acum
+          </a>
+        </motion.div>
       </div>
     </div>
   );

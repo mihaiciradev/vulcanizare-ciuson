@@ -1,0 +1,42 @@
+{
+  "name": "Vulcanizare Ciuson Timișoara",
+  "short_name": "Ciuson",
+  "description": "Vulcanizare profesională non-stop 24/7 în Timișoara și Șag — anvelope auto, TIR, agricole și industriale.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "lang": "ro-RO",
+  "categories": ["automotive", "business", "services"],
+  "icons": [
+    {
+      "src": "/images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot_desktop.png",
+      "sizes": "1864x1069",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Vulcanizare Ciuson — vizualizare desktop"
+    },
+    {
+      "src": "/screenshot_mobile.png",
+      "sizes": "370x747",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Vulcanizare Ciuson — vizualizare mobilă"
+    }
+  ]
+}

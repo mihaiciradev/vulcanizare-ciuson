@@ -1,16 +1,19 @@
 import { MetadataRoute } from "next";
 
+const SITE_URL = "https://ciuson.ro";
+
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date();
   return [
     {
-      url: "https://vulcanizare-ciuson.ro",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
+      url: `${SITE_URL}/`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 1.0,
     },
     {
-      url: "https://vulcanizare-ciuson.ro/preturi",
-      lastModified: new Date(),
+      url: `${SITE_URL}/preturi`,
+      lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
