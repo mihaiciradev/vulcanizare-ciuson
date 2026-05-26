@@ -130,7 +130,8 @@ export default function WheelCanvas() {
     // Mouse drag rotation (desktop only) - actual click + drag
     const canvasEl = renderer.domElement;
     const handlePointerDown = (e: PointerEvent) => {
-      if (isMobile) return;
+      // Only enable drag on desktop
+      if (window.innerWidth < 768) return;
       isDragging.current = true;
       lastPointer.current = { x: e.clientX, y: e.clientY };
       canvasEl.setPointerCapture(e.pointerId);
@@ -165,8 +166,8 @@ export default function WheelCanvas() {
 
       if (!isVisible) return;
 
-      if (wheelRef.current && !isMobile) {
-        // Smooth interpolation toward drag + scroll targets
+      if (wheelRef.current) {
+        // Smooth interpolation toward drag + scroll targets (both desktop and mobile)
         wheelRef.current.rotation.y +=
           (targetRotationY.current - wheelRef.current.rotation.y) * 0.08;
         wheelRef.current.rotation.x +=
@@ -213,17 +214,12 @@ export default function WheelCanvas() {
     };
   }, [isMobile]);
 
-  if (isMobile) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange/5 to-transparent rounded-2xl">
-        <div className="text-text-muted text-center">
-          <p className="text-sm">3D Model - Scroll to rotate</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+    <div
+      ref={containerRef}
+      className={`w-full h-full ${
+        isMobile ? "cursor-auto" : "cursor-grab active:cursor-grabbing"
+      }`}
+    />
   );
 }
