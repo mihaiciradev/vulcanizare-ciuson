@@ -103,7 +103,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden pb-4 border-t border-orange/10 space-y-3">
+          <div className="md:hidden pb-4 border-t border-orange/10 space-y-3 bg-dark-bg/98 backdrop-blur-sm relative z-50">
             {!isHome && (
               <Link
                 href="/"
