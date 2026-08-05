@@ -8,28 +8,28 @@ const services = [
     title: "VULCANIZARE",
     icon: "/images/serviciu_vulcanizare.png",
     description:
-      "Professional tire repair with latest technology. De la bicicletă până la tractor, noi le facem pe toate!",
+      "Reparații profesionale de anvelope cu echipament de ultimă generație. De la bicicletă până la tractor, noi le facem pe toate!",
   },
   {
     id: "02",
     title: "VULCANIZARE MOBILĂ",
     icon: "/images/serviciu_vulcanizare_mobila.png",
     description:
-      "Mobile service 24/7 in Timișoara area. Fie că sunteți blocat pe marginea drumului, echipa noastră vine la dumneavoastră.",
+      "Serviciu mobil 24/7 în zona Timișoarei. Fie că sunteți blocat pe marginea drumului, echipa noastră vine la dumneavoastră.",
   },
   {
     id: "03",
     title: "REPARAȚII ANVELOPE",
     icon: "/images/serviciu_reparatii.png",
     description:
-      "Cold/hot repairs for all vehicle types. Specializați în repararea anvelopelor de orice dimensiune.",
+      "Reparații la cald și la rece pentru toate tipurile de vehicule. Specializați în repararea anvelopelor de orice dimensiune.",
   },
   {
     id: "04",
     title: "SPĂLĂTORIE AUTO",
     icon: "/images/serviciu_spalatorie.png",
     description:
-      "Complete car washing & detailing. Servicii premium incluzând interior cleaning, wax și ceramic treatments.",
+      "Servicii complete de spălare și detailing. Pachet premium cu curățare interioară, ceară și tratamente ceramice.",
   },
 ];
 
