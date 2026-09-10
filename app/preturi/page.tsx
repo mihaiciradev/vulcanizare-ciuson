@@ -61,7 +61,7 @@ export default function Preturi() {
           transition={{ duration: 0.6 }}
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-text-light mb-4">
-            Prețuri Servicii
+            Prețuri Spălătorie Auto
           </h1>
           <p className="text-text-muted text-base sm:text-lg">
             Transparent și accesibil pentru toți clienții

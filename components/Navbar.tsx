@@ -60,8 +60,12 @@ export default function Navbar() {
 
             <button
               onClick={() => {
-                const element = document.querySelector("#services");
-                element?.scrollIntoView({ behavior: "smooth" });
+                if (isHome) {
+                  const element = document.querySelector("#services");
+                  element?.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  window.location.href = "/#services";
+                }
               }}
               className="text-text-muted hover:text-text-light font-semibold text-sm transition-colors"
             >
@@ -127,8 +131,12 @@ export default function Navbar() {
 
             <button
               onClick={() => {
-                const element = document.querySelector("#services");
-                element?.scrollIntoView({ behavior: "smooth" });
+                if (isHome) {
+                  const element = document.querySelector("#services");
+                  element?.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  window.location.href = "/#services";
+                }
                 setIsMobileMenuOpen(false);
               }}
               className="w-full text-left px-4 py-2 text-text-muted hover:text-text-light hover:bg-orange/10 rounded-lg font-semibold text-sm transition-colors"
