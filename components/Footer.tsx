@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MessageCircle } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -24,7 +25,7 @@ export default function Footer() {
           {/* Service area */}
           <p className="text-sm sm:text-base text-text-muted text-center max-w-2xl">
             Vulcanizare non-stop în <strong className="text-text-light">Timișoara</strong>{" "}
-            și <strong className="text-text-light">Șag</strong> — anvelope auto,
+            și <strong className="text-text-light">Șag</strong>. Anvelope auto,
             TIR, industriale și agricole. DN59 km 9+700.
           </p>
 
@@ -36,15 +37,20 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-text-muted">
-            <a href="tel:+40761627184" className="hover:text-white hover:text-orange transition-colors">
+            <a href="tel:+40761627184" className="hover:text-orange transition-colors">
               Sună acum
             </a>
             <span className="text-text-muted/30">•</span>
-            <a href="#services" className="hover:text-white hover:text-orange transition-colors">
+            <a href="https://wa.me/40761627184" target="_blank" rel="noopener noreferrer" className="hover:text-green-500 transition-colors inline-flex items-center gap-1">
+              <MessageCircle className="w-3 h-3" />
+              WhatsApp
+            </a>
+            <span className="text-text-muted/30">•</span>
+            <a href="#services" className="hover:text-orange transition-colors">
               Servicii
             </a>
             <span className="text-text-muted/30">•</span>
-            <a href="/preturi" className="hover:text-white hover:text-orange transition-colors">
+            <a href="/preturi" className="hover:text-orange transition-colors">
               Prețuri
             </a>
           </div>

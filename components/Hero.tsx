@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Phone, ChevronDown } from "lucide-react";
+import { Phone, ChevronDown, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -77,14 +77,14 @@ export default function Hero() {
           variants={itemVariants}
           className="text-base sm:text-lg md:text-xl text-text-muted mb-8 sm:mb-12 max-w-2xl mx-auto"
         >
-          Vulcanizare profesională non-stop în Timișoara și Șag —
-          anvelope auto, TIR, agricole și industriale. Intervenție mobilă pe DN59.
+          Vulcanizare profesională non-stop în Timișoara și Șag.
+          Anvelope auto, TIR, agricole și industriale. Intervenție mobilă pe DN59.
         </motion.p>
 
         {/* CTA buttons */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-12 sm:mb-16"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-12 sm:mb-16"
         >
           <a
             href="tel:+40761627184"
@@ -96,12 +96,22 @@ export default function Hero() {
             <span>Sună acum</span>
           </a>
 
-          <motion.div
-            className="text-text-muted text-sm sm:text-base"
-            variants={itemVariants}
+          <a
+            href="https://wa.me/40761627184"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold px-6 sm:px-10 py-3 sm:py-4 rounded-full shadow-lg shadow-green-500/40 text-base sm:text-lg min-w-[200px] sm:min-w-[240px] justify-center hover:shadow-green-600/60 hover:scale-105 active:scale-95"
           >
-            +40 761 627 184
-          </motion.div>
+            <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+            <span>WhatsApp</span>
+          </a>
+        </motion.div>
+
+        <motion.div
+          className="text-text-muted text-sm sm:text-base"
+          variants={itemVariants}
+        >
+          +40 761 627 184
         </motion.div>
 
         {/* Scroll indicator */}

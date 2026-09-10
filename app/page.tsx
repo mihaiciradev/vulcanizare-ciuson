@@ -6,7 +6,7 @@ import CtaSection from "@/components/CtaSection";
 
 export const metadata: Metadata = {
   title:
-    "Vulcanizare Timișoara 24/7 — Ciuson | Anvelope auto, TIR, agricole, Șag",
+    "Vulcanizare Timișoara 24/7 | Ciuson - Anvelope auto, TIR, agricole, Șag",
   description:
     "Vulcanizare profesională non-stop în Timișoara și Șag. Schimbare și reparații anvelope auto, TIR, industriale și agricole. Vulcanizare mobilă pe DN59. Sună: +40 761 627 184.",
   alternates: { canonical: "https://ciuson.ro" },

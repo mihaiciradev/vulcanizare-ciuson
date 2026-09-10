@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, MapPin } from "lucide-react";
+import { Phone, MapPin, MessageCircle } from "lucide-react";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "@/lib/firebase";
 
@@ -53,7 +53,17 @@ export default function Contact() {
                 }}
               >
                 <Phone className="w-5 h-5" />
-                +40 761 627 184
+                Sună
+              </a>
+
+              <a
+                href="https://wa.me/40761627184"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg shadow-green-500/25 hover:shadow-green-600/40 hover:scale-105 transition-all duration-300 text-base"
+              >
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp
               </a>
 
               <Link

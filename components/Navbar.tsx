@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, MessageCircle } from "lucide-react";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -85,6 +85,17 @@ export default function Navbar() {
               <span className="hidden lg:inline">+40 761 627 184</span>
               <span className="lg:hidden">Sună</span>
             </a>
+
+            <a
+              href="https://wa.me/40761627184"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-10 h-10 bg-green-500 hover:bg-green-600 text-white rounded-full transition-all hover:shadow-lg hover:shadow-green-500/40"
+              aria-label="Chat pe WhatsApp"
+              title="Chat pe WhatsApp"
+            >
+              <MessageCircle className="w-5 h-5" />
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -135,13 +146,24 @@ export default function Navbar() {
               </Link>
             )}
 
-            <a
-              href="tel:+40761627184"
-              className="block px-4 py-2 bg-orange hover:bg-orange/90 text-white font-semibold rounded-lg transition-all"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Sună acum: +40 761 627 184
-            </a>
+            <div className="flex gap-3 px-4">
+              <a
+                href="tel:+40761627184"
+                className="flex-1 px-4 py-2 bg-orange hover:bg-orange/90 text-white font-semibold rounded-lg transition-all text-center"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Sună
+              </a>
+              <a
+                href="https://wa.me/40761627184"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                WhatsApp
+              </a>
+            </div>
           </div>
         )}
       </div>

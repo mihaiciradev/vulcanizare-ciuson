@@ -30,11 +30,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: {
     default:
-      "Vulcanizare Timișoara 24/7 — Ciuson | Anvelope auto, TIR, agricole, Șag",
+      "Vulcanizare Timișoara 24/7 | Ciuson - Anvelope auto, TIR, agricole, Șag",
     template: "%s | Vulcanizare Ciuson Timișoara",
   },
   description:
-    "Vulcanizare profesională în Timișoara și Șag — non-stop 24/7. Schimbare și reparații anvelope auto, TIR, industriale și agricole. Vulcanizare mobilă pe DN59. Sună: +40 761 627 184.",
+    "Vulcanizare profesională în Timișoara și Șag. Non-stop 24/7. Schimbare și reparații anvelope auto, TIR, industriale și agricole. Vulcanizare mobilă pe DN59. Sună: +40 761 627 184.",
   keywords: [
     "vulcanizare timisoara",
     "vulcanizare",
@@ -123,7 +123,7 @@ const localBusinessJsonLd = {
   "@type": ["AutoRepair", "TireShop", "LocalBusiness"],
   "@id": `${SITE_URL}#business`,
   name: BUSINESS_NAME,
-  legalName: "Vulcanizare Ciuson — Anvelope Agricole TIR și Industriale",
+  legalName: "Vulcanizare Ciuson - Anvelope Agricole TIR și Industriale",
   alternateName: ["Ciuson Service", "Ciuson Vulcanizare"],
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.svg`,

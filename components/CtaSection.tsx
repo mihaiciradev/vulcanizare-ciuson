@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Phone, MapPin } from "lucide-react";
+import { Phone, MapPin, MessageCircle } from "lucide-react";
 
 const services = ["Anvelope", "Jante", "Echilibrare", "TPMS"];
 
@@ -41,7 +41,7 @@ export default function CtaSection() {
               Vulcanizare rapidă în Timișoara.
             </h2>
             <p className="text-lg sm:text-xl text-orange font-semibold mb-8 sm:mb-10">
-              Fără programare — deservim Timișoara și Șag.
+              Fără programare. Deservim Timișoara și Șag.
             </p>
 
             {/* Service tags (non-interactive labels) */}
@@ -57,17 +57,32 @@ export default function CtaSection() {
               ))}
             </div>
 
-            {/* Call CTA */}
-            <motion.a
-              href="tel:+40761627184"
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 bg-orange hover:bg-orange/90 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg shadow-orange/40 text-base sm:text-lg max-w-fit hover:shadow-orange/60"
-            >
-              <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span>Sună acum</span>
-            </motion.a>
+            {/* Call & WhatsApp CTAs */}
+            <div className="flex gap-3 flex-wrap">
+              <motion.a
+                href="tel:+40761627184"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-orange hover:bg-orange/90 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg shadow-orange/40 text-base sm:text-lg hover:shadow-orange/60"
+              >
+                <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span>Sună acum</span>
+              </motion.a>
+
+              <motion.a
+                href="https://wa.me/40761627184"
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg shadow-green-500/40 text-base sm:text-lg hover:shadow-green-600/60"
+              >
+                <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span>WhatsApp</span>
+              </motion.a>
+            </div>
           </motion.div>
 
           {/* Right side - Map & Info */}
@@ -83,7 +98,7 @@ export default function CtaSection() {
                   <address className="not-italic text-text-muted text-sm sm:text-base">
                     DN59 km 9+700, Timișoara
                     <br />
-                    Timiș, România — între Timișoara și Șag
+                    Timiș, România. Între Timișoara și Șag
                   </address>
                 </div>
               </div>
