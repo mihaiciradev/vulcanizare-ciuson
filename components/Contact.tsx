@@ -66,12 +66,6 @@ export default function Contact() {
                 WhatsApp
               </a>
 
-              <Link
-                href="/preturi"
-                className="inline-flex items-center justify-center gap-2 border-2 border-dark/20 hover:border-orange/50 text-dark hover:text-orange font-semibold px-8 py-4 rounded-full transition-all duration-300 text-base"
-              >
-                Vezi prețurile
-              </Link>
             </div>
 
             {/* Address */}

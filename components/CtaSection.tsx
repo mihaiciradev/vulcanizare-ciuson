@@ -135,16 +135,6 @@ export default function CtaSection() {
               />
             </div>
 
-            {/* CTA button for prices */}
-            <motion.a
-              href="/preturi"
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-center py-3 px-6 rounded-full border-2 border-orange text-orange hover:bg-orange/10 font-semibold transition-all"
-            >
-              Vezi Prețuri
-            </motion.a>
           </motion.div>
         </motion.div>
       </div>

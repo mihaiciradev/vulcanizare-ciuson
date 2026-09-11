@@ -72,14 +72,6 @@ export default function Navbar() {
               Servicii
             </button>
 
-            {pathname !== "/preturi" && (
-              <Link
-                href="/preturi"
-                className="text-text-muted hover:text-text-light font-semibold text-sm transition-colors"
-              >
-                Prețuri
-              </Link>
-            )}
 
             <a
               href="tel:+40761627184"
@@ -144,15 +136,6 @@ export default function Navbar() {
               Servicii
             </button>
 
-            {pathname !== "/preturi" && (
-              <Link
-                href="/preturi"
-                className="block px-4 py-2 text-text-muted hover:text-text-light hover:bg-orange/10 rounded-lg font-semibold text-sm transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Prețuri
-              </Link>
-            )}
 
             <div className="flex gap-3 px-4">
               <a

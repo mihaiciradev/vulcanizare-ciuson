@@ -49,10 +49,6 @@ export default function Footer() {
             <a href="#services" className="hover:text-orange transition-colors">
               Servicii
             </a>
-            <span className="text-text-muted/30">•</span>
-            <a href="/preturi" className="hover:text-orange transition-colors">
-              Prețuri
-            </a>
           </div>
         </div>
       </div>
