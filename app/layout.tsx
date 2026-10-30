@@ -3,16 +3,19 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { faqs } from "@/lib/faq";
 import { Toaster } from "sonner";
 
 const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const SITE_URL = "https://ciuson.ro";
+const HOME_URL = "https://ciuson.ro/";
+const GA_MEASUREMENT_ID = "G-CBZQP2M8Z3";
 const BUSINESS_NAME = "Vulcanizare Ciuson";
 const PHONE = "+40761627184";
 const GEO = { lat: 45.688397, lng: 21.171664 };
@@ -59,14 +62,9 @@ export const metadata: Metadata = {
   applicationName: BUSINESS_NAME,
   category: "Automotive",
   metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: SITE_URL,
-    languages: { "ro-RO": SITE_URL, ro: SITE_URL },
-  },
   openGraph: {
     type: "website",
     locale: "ro_RO",
-    url: SITE_URL,
     siteName: BUSINESS_NAME,
     title:
       "Vulcanizare Timișoara 24/7 — Ciuson | Anvelope auto, TIR, agricole",
@@ -125,7 +123,7 @@ const localBusinessJsonLd = {
   name: BUSINESS_NAME,
   legalName: "Vulcanizare Ciuson - Anvelope Agricole TIR și Industriale",
   alternateName: ["Ciuson Service", "Ciuson Vulcanizare"],
-  url: SITE_URL,
+  url: HOME_URL,
   logo: `${SITE_URL}/images/logo.svg`,
   image: [
     `${SITE_URL}/hero_img.webp`,
@@ -261,7 +259,7 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${SITE_URL}#website`,
-  url: SITE_URL,
+  url: HOME_URL,
   name: BUSINESS_NAME,
   inLanguage: "ro-RO",
   publisher: { "@id": `${SITE_URL}#business` },
@@ -270,40 +268,14 @@ const websiteJsonLd = {
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Faceți vulcanizare non-stop în Timișoara?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Da, suntem disponibili 24/7, inclusiv weekend-uri și sărbători. Sunați la +40 761 627 184.",
-      },
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
     },
-    {
-      "@type": "Question",
-      name: "Faceți vulcanizare mobilă în Șag și împrejurimi?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Da, deplasăm echipa mobilă în zona Timișoara, Șag, Chișoda, Dumbrăvița și pe DN59.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Ce tipuri de anvelope reparați?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Anvelope auto, TIR, camion, utilaje industriale și agricole — orice dimensiune.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Unde sunteți localizați?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Pe DN59 km 9+700, între Timișoara și Șag — la 10 minute de centrul Timișoarei.",
-      },
-    },
-  ],
+  })),
 };
 
 export default function RootLayout({
@@ -314,11 +286,24 @@ export default function RootLayout({
   return (
     <html lang="ro" className={inter.variable}>
       <head>
-        <link rel="canonical" href={SITE_URL} />
-        <link rel="alternate" hrefLang="ro-RO" href={SITE_URL} />
-        <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+        <link rel="canonical" href={HOME_URL} />
+        <link rel="alternate" hrefLang="ro-RO" href={HOME_URL} />
+        <link rel="alternate" hrefLang="x-default" href={HOME_URL} />
+        <meta property="og:url" content={HOME_URL} />
         <link rel="manifest" href="/manifest.webmanifest" />
         <meta name="format-detection" content="telephone=yes" />
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

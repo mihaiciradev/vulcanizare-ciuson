@@ -64,7 +64,7 @@ export default function CtaSection() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 bg-orange hover:bg-orange/90 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg shadow-orange/40 text-base sm:text-lg hover:shadow-orange/60"
+                className="inline-flex items-center gap-3 bg-cta-call hover:bg-cta-call-hover text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg shadow-orange/40 text-base sm:text-lg"
               >
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                 <span>Sună acum</span>
@@ -77,7 +77,7 @@ export default function CtaSection() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg shadow-green-500/40 text-base sm:text-lg hover:shadow-green-600/60"
+                className="inline-flex items-center gap-3 bg-cta-wa hover:bg-cta-wa-hover text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg text-base sm:text-lg"
               >
                 <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
                 <span>WhatsApp</span>

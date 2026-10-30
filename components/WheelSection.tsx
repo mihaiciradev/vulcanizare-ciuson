@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 
 const WheelCanvas = lazy(() => import("./WheelCanvas"));
 
@@ -11,6 +11,37 @@ const features = [
 ];
 
 export default function WheelSection() {
+  const wheelRef = useRef<HTMLDivElement>(null);
+  const [showWheel, setShowWheel] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px)");
+    const node = wheelRef.current;
+    if (!node) return;
+
+    let observer: IntersectionObserver | null = null;
+    const connect = () => {
+      observer?.disconnect();
+      if (!media.matches) return;
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry?.isIntersecting) return;
+          setShowWheel(true);
+          observer?.disconnect();
+        },
+        { rootMargin: "240px" }
+      );
+      observer.observe(node);
+    };
+
+    connect();
+    media.addEventListener("change", connect);
+    return () => {
+      media.removeEventListener("change", connect);
+      observer?.disconnect();
+    };
+  }, []);
+
   return (
     <section className="relative py-16 sm:py-24 md:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,17 +80,16 @@ export default function WheelSection() {
           </motion.div>
 
           {/* Center wheel (3D or image placeholder) */}
-          <motion.div
-            className="relative w-full h-[300px] sm:h-[400px] flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+          <div
+            ref={wheelRef}
+            className="relative hidden md:flex w-full h-[400px] items-center justify-center"
           >
-            <Suspense fallback={<div className="text-text-muted">Încarcă model 3D...</div>}>
-              <WheelCanvas />
-            </Suspense>
-          </motion.div>
+            {showWheel ? (
+              <Suspense fallback={null}>
+                <WheelCanvas />
+              </Suspense>
+            ) : null}
+          </div>
 
           {/* Right features */}
           <motion.div

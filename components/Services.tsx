@@ -6,28 +6,28 @@ const services = [
   {
     id: "01",
     title: "VULCANIZARE",
-    icon: "/images/serviciu_vulcanizare.png",
+    icon: "/images/serviciu_vulcanizare.webp",
     description:
-      "Reparații profesionale de anvelope pe echipament de ultimă generație. Garantie de calitate pe fiecare lucrare. De la bicicletă la tractor, noi le reparăm pe toate!",
+      "Reparații profesionale de anvelope pe echipament de ultimă generație. Garanție de calitate pe fiecare lucrare. De la bicicletă la tractor, noi le reparăm pe toate!",
   },
   {
     id: "02",
     title: "VULCANIZARE MOBILĂ",
-    icon: "/images/serviciu_vulcanizare_mobila.png",
+    icon: "/images/serviciu_vulcanizare_mobila.webp",
     description:
-      "Blocat pe drum? Nu problemă. Echipa noastră mobilă vine la tine 24/7 pe DN59 și în zona Timișoarei. Reparație rapidă, fără așteptare.",
+      "Blocat pe drum? Nu e nicio problemă. Echipa noastră mobilă vine la tine 24/7 pe DN59 și în zona Timișoarei. Reparație rapidă, fără așteptare.",
   },
   {
     id: "03",
     title: "REPARAȚII ANVELOPE",
-    icon: "/images/serviciu_reparatii.png",
+    icon: "/images/serviciu_reparatii.webp",
     description:
       "Reparații la cald și la rece. Orice tip de anvelope, orice dimensiune. Auto, TIR, utilaje agricole. Lucrări sigure și durabile.",
   },
   {
     id: "04",
     title: "SPĂLĂTORIE AUTO",
-    icon: "/images/serviciu_spalatorie.png",
+    icon: "/images/serviciu_spalatorie.webp",
     description:
       "Spălare profesională plus detailing premium. Interior curat, ceară de protecție, tratamente ceramice. Mașina ta strălucitor nouă.",
   },

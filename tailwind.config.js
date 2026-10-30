@@ -9,6 +9,10 @@ module.exports = {
     extend: {
       colors: {
         orange: "#FF6633",
+        "cta-call": "#C2410C",
+        "cta-call-hover": "#9A3412",
+        "cta-wa": "#15803D",
+        "cta-wa-hover": "#166534",
         "dark-bg": "#1A1A1A",
         cream: "#E8DCC8",
         "text-light": "#F5F5F5",
@@ -16,7 +20,7 @@ module.exports = {
         "text-muted": "#999",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["var(--font-inter)", "sans-serif"],
       },
       backgroundImage: {
         "gradient-dark": "linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)",

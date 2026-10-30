@@ -46,7 +46,7 @@ export default function Contact() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="tel:+40761627184"
-                className="inline-flex items-center justify-center gap-3 bg-orange hover:bg-orange/90 text-white font-semibold px-8 py-4 rounded-full shadow-lg shadow-orange/25 hover:shadow-orange/40 hover:scale-105 transition-all duration-300 text-base"
+                className="inline-flex items-center justify-center gap-3 bg-cta-call hover:bg-cta-call-hover text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:scale-105 transition-all duration-300 text-base"
                 onClick={() => {
                   if (analytics)
                     logEvent(analytics, "call_button_click", { page: "contact" });
@@ -60,7 +60,7 @@ export default function Contact() {
                 href="https://wa.me/40761627184"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg shadow-green-500/25 hover:shadow-green-600/40 hover:scale-105 transition-all duration-300 text-base"
+                className="inline-flex items-center justify-center gap-3 bg-cta-wa hover:bg-cta-wa-hover text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:scale-105 transition-all duration-300 text-base"
               >
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp

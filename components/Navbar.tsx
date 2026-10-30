@@ -75,7 +75,7 @@ export default function Navbar() {
 
             <a
               href="tel:+40761627184"
-              className="inline-flex items-center gap-2 bg-orange hover:bg-orange/90 text-white font-semibold px-4 sm:px-6 py-2 rounded-full transition-all hover:shadow-lg hover:shadow-orange/40"
+              className="inline-flex items-center gap-2 bg-cta-call hover:bg-cta-call-hover text-white font-semibold px-4 sm:px-6 py-2 rounded-full transition-all hover:shadow-lg"
             >
               <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="hidden lg:inline">+40 761 627 184</span>
@@ -86,7 +86,7 @@ export default function Navbar() {
               href="https://wa.me/40761627184"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-10 h-10 bg-green-500 hover:bg-green-600 text-white rounded-full transition-all hover:shadow-lg hover:shadow-green-500/40"
+              className="inline-flex items-center justify-center w-10 h-10 bg-cta-wa hover:bg-cta-wa-hover text-white rounded-full transition-all hover:shadow-lg"
               aria-label="Chat pe WhatsApp"
               title="Chat pe WhatsApp"
             >
@@ -140,7 +140,7 @@ export default function Navbar() {
             <div className="flex gap-3 px-4">
               <a
                 href="tel:+40761627184"
-                className="flex-1 px-4 py-2 bg-orange hover:bg-orange/90 text-white font-semibold rounded-lg transition-all text-center"
+                className="flex-1 px-4 py-2 bg-cta-call hover:bg-cta-call-hover text-white font-semibold rounded-lg transition-all text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Sună
@@ -149,7 +149,7 @@ export default function Navbar() {
                 href="https://wa.me/40761627184"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-all"
+                className="px-4 py-2 bg-cta-wa hover:bg-cta-wa-hover text-white font-semibold rounded-lg transition-all"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 WhatsApp
