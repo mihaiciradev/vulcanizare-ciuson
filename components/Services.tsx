@@ -15,7 +15,7 @@ const services = [
     title: "VULCANIZARE MOBILĂ",
     icon: "/images/serviciu_vulcanizare_mobila.webp",
     description:
-      "Blocat pe drum? Nu e nicio problemă. Echipa noastră mobilă vine la tine 24/7 pe DN59 și în zona Timișoarei. Reparație rapidă, fără așteptare.",
+      "Blocat pe drum? Nu e nicio problemă. Echipa noastră mobilă vine la tine pe DN59 și în zona Timișoarei. Reparație rapidă, fără așteptare.",
   },
   {
     id: "03",

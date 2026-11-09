@@ -114,9 +114,6 @@ export default function CtaSection() {
                   >
                     +40 761 627 184
                   </a>
-                  <p className="text-text-muted text-xs sm:text-sm mt-1">
-                    Disponibil 24/7
-                  </p>
                 </div>
               </div>
             </div>

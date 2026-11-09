@@ -24,7 +24,7 @@ export default function Footer() {
 
           {/* Service area */}
           <p className="text-sm sm:text-base text-text-muted text-center max-w-2xl">
-            Vulcanizare non-stop în <strong className="text-text-light">Timișoara</strong>{" "}
+            Vulcanizare în <strong className="text-text-light">Timișoara</strong>{" "}
             și <strong className="text-text-light">Șag</strong>. Anvelope auto,
             TIR, industriale și agricole. DN59 km 9+700.
           </p>

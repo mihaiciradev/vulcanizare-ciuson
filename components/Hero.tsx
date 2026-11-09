@@ -17,13 +17,6 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-tr from-black/50 via-transparent to-transparent" />
 
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto w-full">
-        <div className="inline-flex items-center gap-2.5 glass-effect rounded-full px-4 sm:px-6 py-2 mb-6 sm:mb-8">
-          <span className="w-2 h-2 bg-orange rounded-full animate-pulse shrink-0" />
-          <span className="text-sm sm:text-base font-semibold tracking-wider uppercase text-text-light">
-            Disponibil 24/7
-          </span>
-        </div>
-
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight tracking-tight">
           <span className="text-text-light">SERVICE</span>
           <br />
@@ -33,7 +26,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-base sm:text-lg md:text-xl text-text-muted mb-8 sm:mb-12 max-w-2xl mx-auto">
-          Vulcanizare profesională non-stop în Timișoara și Șag.
+          Vulcanizare profesională în Timișoara și Șag.
           Anvelope auto, TIR, agricole și industriale. Intervenție mobilă pe DN59.
         </p>
 

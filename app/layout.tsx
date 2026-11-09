@@ -33,17 +33,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: {
     default:
-      "Vulcanizare Timișoara 24/7 | Ciuson - Anvelope auto, TIR, agricole, Șag",
+      "Vulcanizare Timișoara | Ciuson - Anvelope auto, TIR, agricole, Șag",
     template: "%s | Vulcanizare Ciuson Timișoara",
   },
   description:
-    "Vulcanizare profesională în Timișoara și Șag. Non-stop 24/7. Schimbare și reparații anvelope auto, TIR, industriale și agricole. Vulcanizare mobilă pe DN59. Sună: +40 761 627 184.",
+    "Vulcanizare profesională în Timișoara și Șag. Schimbare și reparații anvelope auto, TIR, industriale și agricole. Vulcanizare mobilă pe DN59. Sună: +40 761 627 184.",
   keywords: [
     "vulcanizare timisoara",
     "vulcanizare",
     "vulcanizare sag",
-    "vulcanizare non stop",
-    "vulcanizare 24/7",
     "vulcanizare mobila timisoara",
     "schimbare anvelope timisoara",
     "reparatii anvelope timisoara",
@@ -67,23 +65,23 @@ export const metadata: Metadata = {
     locale: "ro_RO",
     siteName: BUSINESS_NAME,
     title:
-      "Vulcanizare Timișoara 24/7 — Ciuson | Anvelope auto, TIR, agricole",
+      "Vulcanizare Timișoara — Ciuson | Anvelope auto, TIR, agricole",
     description:
-      "Vulcanizare non-stop în Timișoara și Șag. Anvelope auto, TIR, agricole și industriale. Mobilă pe DN59. Sună +40 761 627 184.",
+      "Vulcanizare în Timișoara și Șag. Anvelope auto, TIR, agricole și industriale. Mobilă pe DN59. Sună +40 761 627 184.",
     images: [
       {
         url: "/metadata-social.png",
         width: 1200,
         height: 630,
-        alt: "Vulcanizare Ciuson Timișoara — service anvelope 24/7",
+        alt: "Vulcanizare Ciuson Timișoara — service anvelope",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vulcanizare Ciuson Timișoara | 24/7 — Auto, TIR, Agricole",
+    title: "Vulcanizare Ciuson Timișoara — Auto, TIR, Agricole",
     description:
-      "Vulcanizare non-stop Timișoara, Șag. Anvelope auto/TIR/agricole. +40 761 627 184",
+      "Vulcanizare Timișoara, Șag. Anvelope auto/TIR/agricole. +40 761 627 184",
     images: ["/metadata-social.png"],
   },
   robots: {
@@ -130,7 +128,7 @@ const localBusinessJsonLd = {
     `${SITE_URL}/metadata-social.png`,
   ],
   description:
-    "Service profesional de vulcanizare în Timișoara și Șag. Schimbare și reparații anvelope auto, TIR, industriale și agricole. Vulcanizare mobilă non-stop pe DN59.",
+    "Service profesional de vulcanizare în Timișoara și Șag. Schimbare și reparații anvelope auto, TIR, industriale și agricole. Vulcanizare mobilă pe DN59.",
   telephone: PHONE,
   email: "contact@ciuson.ro",
   priceRange: "$$",
@@ -168,22 +166,6 @@ const localBusinessJsonLd = {
     },
     geoRadius: 30000,
   },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-      opens: "00:00",
-      closes: "23:59",
-    },
-  ],
   sameAs: [
     "https://www.facebook.com/vulcanizareciuson",
     "https://www.google.com/maps/place//data=!4m2!3m1!1s0x47455d8d5db8aafb:0x95407ff170160231",
@@ -205,9 +187,9 @@ const localBusinessJsonLd = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Vulcanizare mobilă 24/7",
+          name: "Vulcanizare mobilă",
           description:
-            "Intervenție mobilă non-stop pe DN59 și în zona Timișoara și Șag.",
+            "Intervenție mobilă pe DN59 și în zona Timișoara și Șag.",
         },
       },
       {
@@ -237,20 +219,6 @@ const localBusinessJsonLd = {
       contactType: "customer service",
       areaServed: "RO",
       availableLanguage: ["ro", "en"],
-      hoursAvailable: {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday",
-        ],
-        opens: "00:00",
-        closes: "23:59",
-      },
     },
   ],
 };

@@ -1,8 +1,7 @@
 export const faqs = [
   {
-    question: "Faceți vulcanizare non-stop în Timișoara?",
-    answer:
-      "Da, suntem disponibili 24/7, inclusiv weekend-uri și sărbători. Sunați la +40 761 627 184.",
+    question: "Cum vă pot contacta?",
+    answer: "Sunați la +40 761 627 184.",
   },
   {
     question: "Faceți vulcanizare mobilă în Șag și împrejurimi?",
