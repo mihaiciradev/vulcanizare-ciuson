@@ -1,8 +1,9 @@
 /**
  * Google Ads conversion tracking.
  *
- * Everything is inert until GOOGLE_ADS_ENABLED is true. Keep it false until the site asks
- * visitors for advertising consent: there is no consent banner or Consent Mode setup yet.
+ * The Google tag loads on every page. There is no consent banner yet, so Consent Mode stays
+ * "denied" (see components/GoogleAdsTag.tsx): no ad cookies, only cookieless pings. Decided
+ * with the site owner on 2026-11-23. A future banner should call gtag('consent', 'update', ...).
  *
  * Conversions also stay inactive until their send_to value is filled in, in the exact form
  * "AW-17874820921/<label>" copied from Google Ads (Goals > Conversions > the action > Tag setup).
@@ -11,7 +12,7 @@
 export const GOOGLE_ADS_ID = "AW-17874820921";
 
 /** Loads the Google tag on every page. */
-export const GOOGLE_ADS_ENABLED = false;
+export const GOOGLE_ADS_ENABLED = true;
 
 export const CONVERSIONS = {
   /** "Sună la atelier" (tel: link) on /oferte/schimb-anvelope and /en/offer. */
