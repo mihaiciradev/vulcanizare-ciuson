@@ -1,122 +1,38 @@
-"use client";
-import Image from "next/image";
-import { motion } from "framer-motion";
-
 const services = [
   {
-    id: "01",
-    title: "VULCANIZARE",
-    icon: "/images/serviciu_vulcanizare.webp",
-    description:
-      "Reparații profesionale de anvelope pe echipament de ultimă generație. Garanție de calitate pe fiecare lucrare. De la bicicletă la tractor, noi le reparăm pe toate!",
+    title: "Schimb și echilibrare",
+    text: "Montăm și echilibrăm anvelope pentru autoturisme, la atelierul de pe DN59.",
   },
   {
-    id: "02",
-    title: "VULCANIZARE MOBILĂ",
-    icon: "/images/serviciu_vulcanizare_mobila.webp",
-    description:
-      "Blocat pe drum? Nu e nicio problemă. Echipa noastră mobilă vine la tine pe DN59 și în zona Timișoarei. Reparație rapidă, fără așteptare.",
+    title: "Reparații de anvelope",
+    text: "Reparăm anvelope pentru autoturisme, camioane și utilaje.",
   },
   {
-    id: "03",
-    title: "REPARAȚII ANVELOPE",
-    icon: "/images/serviciu_reparatii.webp",
-    description:
-      "Reparații la cald și la rece. Orice tip de anvelope, orice dimensiune. Auto, TIR, utilaje agricole. Lucrări sigure și durabile.",
-  },
-  {
-    id: "04",
-    title: "SPĂLĂTORIE AUTO",
-    icon: "/images/serviciu_spalatorie.webp",
-    description:
-      "Spălare profesională plus detailing premium. Interior curat, ceară de protecție, tratamente ceramice. Mașina ta strălucitor nouă.",
+    title: "Camioane și utilaje",
+    text: "Anvelope pentru TIR, camioane, utilaje industriale și agricole.",
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
-
 export default function Services() {
   return (
-    <section id="services" className="relative py-16 sm:py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <motion.div
-          className="text-center mb-12 sm:mb-16 md:mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-orange text-xs sm:text-sm font-bold tracking-widest uppercase mb-3">
-            CE OFERIM
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-light mb-4">
-            Servicii vulcanizare în Timișoara și Șag
-          </h2>
-          <div className="w-12 h-1 bg-orange rounded-full mx-auto" />
-        </motion.div>
-
-        {/* Services grid */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {services.map((service) => (
-            <motion.div
-              key={service.id}
-              variants={cardVariants}
-              className="group relative glass-effect rounded-2xl p-6 sm:p-8 hover:shadow-2xl hover:shadow-orange/30 cursor-pointer transition-shadow duration-300"
-            >
-              {/* Number badge */}
-              <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-orange/10 group-hover:bg-orange/20 mb-4 sm:mb-6 transition-colors">
-                <span className="text-lg sm:text-xl font-bold text-orange">
-                  {service.id}
-                </span>
-              </div>
-
-              {/* Icon */}
-              <div className="relative h-32 sm:h-40 mb-6 sm:mb-8 flex items-center justify-center overflow-hidden rounded-xl">
-                <Image
-                  src={service.icon}
-                  alt={service.title}
-                  width={160}
-                  height={160}
-                  className="object-contain group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-
-              {/* Content */}
-              <h3 className="text-xl sm:text-2xl font-bold text-text-light mb-3 group-hover:text-orange transition-colors">
+    <section id="servicii" aria-labelledby="servicii-titlu" className="scroll-mt-20 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <h2 id="servicii-titlu" className="font-display text-5xl font-extrabold uppercase leading-none md:text-7xl">
+          Ce facem la atelier
+        </h2>
+        <ol className="mt-12 grid gap-0 md:grid-cols-3">
+          {services.map((service, index) => (
+            <li key={service.title} className="border-t-4 border-ink py-8 md:pr-10">
+              <span className="font-display text-lg font-bold text-brand">
+                0{index + 1}
+              </span>
+              <h3 className="mt-3 font-display text-3xl font-bold uppercase leading-tight">
                 {service.title}
               </h3>
-              <p className="text-sm sm:text-base text-text-muted leading-relaxed">
-                {service.description}
-              </p>
-
-            </motion.div>
+              <p className="mt-4 text-lg leading-relaxed text-muted">{service.text}</p>
+            </li>
           ))}
-        </motion.div>
+        </ol>
       </div>
     </section>
   );

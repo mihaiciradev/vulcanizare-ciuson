@@ -1,21 +1,21 @@
 export const faqs = [
   {
     question: "Cum vă pot contacta?",
-    answer: "Sunați la +40 761 627 184.",
+    answer: "Sunați la +40 761 627 184 sau scrieți-ne pe WhatsApp.",
   },
   {
-    question: "Faceți vulcanizare mobilă în Șag și împrejurimi?",
+    question: "Faceți vulcanizare mobilă?",
     answer:
-      "Da, deplasăm echipa mobilă în zona Timișoara, Șag, Chișoda, Dumbrăvița și pe DN59.",
+      "Da. Trimiteți-ne locația și tipul vehiculului, iar noi vă confirmăm dacă putem interveni la fața locului.",
   },
   {
     question: "Ce tipuri de anvelope reparați?",
     answer:
-      "Anvelope auto, TIR, camion, utilaje industriale și agricole — orice dimensiune.",
+      "Anvelope auto, TIR, camioane, utilaje industriale și agricole.",
   },
   {
-    question: "Unde sunteți localizați?",
+    question: "Unde vă găsesc?",
     answer:
-      "Pe DN59 km 9+700, între Timișoara și Șag — la 10 minute de centrul Timișoarei.",
+      "Pe DN59 km 9+700, între Timișoara și Șag.",
   },
 ] as const;

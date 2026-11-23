@@ -8,6 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        brand: "#E80D13",
+        "brand-dark": "#B80A0F",
+        ink: "#000000",
+        paper: "#F5F3EF",
+        "paper-2": "#EAE6DE",
+        muted: "#5C5C5C",
         orange: "#FF6633",
         "cta-call": "#C2410C",
         "cta-call-hover": "#9A3412",
@@ -21,6 +27,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-display)", "sans-serif"],
       },
       backgroundImage: {
         "gradient-dark": "linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)",

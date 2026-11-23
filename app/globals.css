@@ -4,71 +4,47 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  font-family: var(--font-inter);
-  background-color: #1a1a1a;
-  color: #f5f5f5;
-  position: relative;
+  @apply bg-paper text-ink font-sans antialiased;
 }
 
-/* Modern decorative background — soft mesh glows + faint dot grid, fixed, below content */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(255, 102, 51, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 50% at 85% 85%, rgba(68, 136, 255, 0.06) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(232, 220, 200, 0.03) 0%, transparent 70%),
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
-  background-size: auto, auto, auto, 28px 28px;
-  background-position: 0 0, 0 0, 0 0, 0 0;
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+:focus-visible {
+  outline: 3px solid #E80D13;
+  outline-offset: 3px;
 }
 
-/* Slow drift on the mesh glows so it doesn't feel static */
-@keyframes meshDrift {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(-2%, -1%, 0); }
-}
-body::before { animation: meshDrift 22s ease-in-out infinite; will-change: transform; }
-
-/* Ensure content sits above the decorative background */
-body > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Hero staggered fade-in animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(22px);
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-3 rounded-full px-7 py-4 text-base font-bold transition-colors duration-200;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-ink {
+    @apply btn bg-ink text-paper hover:bg-neutral-800;
+  }
+  .btn-outline {
+    @apply btn border-2 border-ink text-ink hover:bg-ink hover:text-paper;
+  }
+  .btn-outline-paper {
+    @apply btn border-2 border-paper/70 text-paper hover:bg-paper hover:text-ink;
+  }
+  .btn-outline-white {
+    @apply btn border-2 border-white text-white hover:bg-white hover:text-brand;
   }
 }
 
-.hero-fade-1 { animation: fadeInUp 0.65s ease-out 0ms both; }
-.hero-fade-2 { animation: fadeInUp 0.65s ease-out 160ms both; }
-.hero-fade-3 { animation: fadeInUp 0.65s ease-out 310ms both; }
-.hero-fade-4 { animation: fadeInUp 0.65s ease-out 460ms both; }
-.hero-fade-5 { animation: fadeInUp 0.65s ease-out 600ms both; }
-
-/* Glassmorphism effect */
-.glass-effect {
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Targeted smooth transitions — avoid the wildcard which forces every node to animate */
-button, a {
-  @apply transition-colors duration-200 ease-out;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

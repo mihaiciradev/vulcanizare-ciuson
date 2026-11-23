@@ -1,36 +1,30 @@
 import type { Metadata } from "next";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import WheelSection from "@/components/WheelSection";
 import Faq from "@/components/Faq";
-import CtaSection from "@/components/CtaSection";
+import Hero from "@/components/Hero";
+import Location from "@/components/Location";
+import MobileTeaser from "@/components/MobileTeaser";
+import OfferBanner from "@/components/OfferBanner";
+import Services from "@/components/Services";
+import { isOfferActive } from "@/lib/offer";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title:
-    "Vulcanizare Timișoara | Ciuson - Anvelope auto, TIR, agricole, Șag",
+  title: { absolute: "Vulcanizare Timișoara și Șag | Ciuson" },
   description:
-    "Vulcanizare profesională în Timișoara și Șag. Schimbare și reparații anvelope auto, TIR, industriale și agricole. Vulcanizare mobilă pe DN59. Sună: +40 761 627 184.",
+    "Schimb, echilibrare și reparații de anvelope pe DN59, între Timișoara și Șag. Vulcanizare mobilă la fața locului. Sună +40 761 627 184.",
+  alternates: { canonical: "/" },
 };
 
 export default function Home() {
   return (
     <>
       <Hero />
+      {isOfferActive() && <OfferBanner />}
       <Services />
-      <WheelSection />
+      <MobileTeaser />
+      <Location />
       <Faq />
-      <CtaSection />
-      {/* SEO-only paragraph: location anchors for ranking on Timișoara, Șag */}
-      <section aria-label="Zone deservite" className="sr-only">
-        <h2>Zone deservite de Vulcanizare Ciuson</h2>
-        <p>
-          Service vulcanizare în Timișoara și satele învecinate:
-          Șag, Chișoda, Dumbrăvița, Moșnița Nouă, Sânmihaiu Român, pe DN59
-          km 9+700. Schimbare anvelope, reparații la cald și la rece,
-          echilibrare roți, vulcanizare mobilă pentru autoturisme, TIR,
-          camioane, utilaje agricole și industriale.
-        </p>
-      </section>
     </>
   );
 }

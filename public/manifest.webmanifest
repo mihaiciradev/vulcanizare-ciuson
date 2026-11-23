@@ -1,7 +1,7 @@
 {
   "name": "Vulcanizare Ciuson Timișoara",
   "short_name": "Ciuson",
-  "description": "Vulcanizare profesională în Timișoara și Șag — anvelope auto, TIR, agricole și industriale.",
+  "description": "Vulcanizare profesională în Timișoara și Șag - anvelope auto, TIR, agricole și industriale.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -29,14 +29,14 @@
       "sizes": "1864x1069",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Vulcanizare Ciuson — vizualizare desktop"
+      "label": "Vulcanizare Ciuson - vizualizare desktop"
     },
     {
       "src": "/screenshot_mobile.png",
       "sizes": "370x747",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Vulcanizare Ciuson — vizualizare mobilă"
+      "label": "Vulcanizare Ciuson - vizualizare mobilă"
     }
   ]
 }

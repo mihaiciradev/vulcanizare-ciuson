@@ -2,29 +2,16 @@ import { faqs } from "@/lib/faq";
 
 export default function Faq() {
   return (
-    <section
-      id="intrebari"
-      aria-labelledby="faq-heading"
-      className="relative py-16 sm:py-24"
-    >
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2
-          id="faq-heading"
-          className="text-3xl sm:text-4xl font-bold text-text-light mb-8 sm:mb-10 text-center"
-        >
+    <section aria-labelledby="faq-titlu" className="border-t border-ink/10 py-20 md:py-28">
+      <div className="mx-auto max-w-3xl px-5 sm:px-8">
+        <h2 id="faq-titlu" className="font-display text-5xl font-extrabold uppercase leading-none md:text-6xl">
           Întrebări frecvente
         </h2>
-        <dl className="space-y-6">
+        <dl className="mt-10 divide-y divide-ink/10 border-y border-ink/10">
           {faqs.map((item) => (
-            <div key={item.question} className="glass-effect rounded-2xl p-6 sm:p-8">
-              <dt>
-                <h3 className="text-lg sm:text-xl font-semibold text-text-light">
-                  {item.question}
-                </h3>
-              </dt>
-              <dd className="mt-3 text-base text-text-light/90 leading-relaxed">
-                {item.answer}
-              </dd>
+            <div key={item.question} className="py-6">
+              <dt className="text-xl font-bold">{item.question}</dt>
+              <dd className="mt-2 text-lg leading-relaxed text-muted">{item.answer}</dd>
             </div>
           ))}
         </dl>

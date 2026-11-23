@@ -1,164 +1,99 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { Phone, Menu, X, MessageCircle } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { Menu, Phone, X } from "lucide-react";
+import { SITE, whatsappUrl } from "@/lib/site";
 
-export default function Navbar() {
-  const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+export default function Navbar({ offerActive }: { offerActive: boolean }) {
+  const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const isHome = pathname === "/" || pathname === "";
-  const bgClass = isScrolled
-    ? "bg-dark-bg/95 backdrop-blur-md shadow-lg shadow-black/20 border-b border-orange/10"
-    : "bg-transparent";
+  const links = [
+    ...(offerActive ? [{ href: "/oferte/schimb-anvelope", label: "Ofertă" }] : []),
+    { href: "/#servicii", label: "Servicii" },
+    { href: "/vulcanizare-mobila-timisoara", label: "Vulcanizare mobilă" },
+    { href: "/#locatie", label: "Locație" },
+  ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${bgClass}`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-paper/95 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 md:h-20">
+        <Link href="/" className="shrink-0" aria-label="Ciuson, acasă">
+          <Image
+            src="/images/logo-ciuson.png"
+            alt="Ciuson"
+            width={720}
+            height={348}
+            priority
+            className="h-10 w-auto md:h-12"
+          />
+        </Link>
+
+        <nav aria-label="Principal" className="hidden items-center gap-7 md:flex">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-bold uppercase tracking-wide text-ink/80 hover:text-brand"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="hidden items-center gap-3 md:flex">
+          <a href={SITE.phoneHref} className="btn-primary px-5 py-3 text-sm">
+            <Phone className="h-4 w-4" aria-hidden />
+            {SITE.phone}
+          </a>
+          <a
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline px-5 py-3 text-sm"
           >
-            <Image
-              src="/images/logo.svg"
-              alt="Ciuson Service"
-              width={180}
-              height={120}
-              className="w-[7.5rem] h-20 sm:w-[10.5rem] sm:h-28 -my-4 sm:-my-6 object-contain"
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-12">
-            {!isHome && (
-              <Link
-                href="/"
-                className="text-text-muted hover:text-text-light font-semibold text-sm transition-colors"
-              >
-                Acasă
-              </Link>
-            )}
-
-            <button
-              onClick={() => {
-                if (isHome) {
-                  const element = document.querySelector("#services");
-                  element?.scrollIntoView({ behavior: "smooth" });
-                } else {
-                  window.location.href = "/#services";
-                }
-              }}
-              className="text-text-muted hover:text-text-light font-semibold text-sm transition-colors"
-            >
-              Servicii
-            </button>
-
-
-            <a
-              href="tel:+40761627184"
-              className="inline-flex items-center gap-2 bg-cta-call hover:bg-cta-call-hover text-white font-semibold px-4 sm:px-6 py-2 rounded-full transition-all hover:shadow-lg"
-            >
-              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="hidden lg:inline">+40 761 627 184</span>
-              <span className="lg:hidden">Sună</span>
-            </a>
-
-            <a
-              href="https://wa.me/40761627184"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-10 h-10 bg-cta-wa hover:bg-cta-wa-hover text-white rounded-full transition-all hover:shadow-lg"
-              aria-label="Chat pe WhatsApp"
-              title="Chat pe WhatsApp"
-            >
-              <MessageCircle className="w-5 h-5" />
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-text-light hover:text-orange transition-colors"
-            aria-label="Menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+            WhatsApp
+          </a>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden pb-4 border-t border-orange/10 space-y-3 bg-dark-bg/98 backdrop-blur-sm relative z-50">
-            {!isHome && (
-              <Link
-                href="/"
-                className="block px-4 py-2 text-text-muted hover:text-text-light hover:bg-orange/10 rounded-lg font-semibold text-sm transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Acasă
-              </Link>
-            )}
-
-            <button
-              onClick={() => {
-                if (isHome) {
-                  const element = document.querySelector("#services");
-                  element?.scrollIntoView({ behavior: "smooth" });
-                } else {
-                  window.location.href = "/#services";
-                }
-                setIsMobileMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 text-text-muted hover:text-text-light hover:bg-orange/10 rounded-lg font-semibold text-sm transition-colors"
-            >
-              Servicii
-            </button>
-
-
-            <div className="flex gap-3 px-4">
-              <a
-                href="tel:+40761627184"
-                className="flex-1 px-4 py-2 bg-cta-call hover:bg-cta-call-hover text-white font-semibold rounded-lg transition-all text-center"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Sună
-              </a>
-              <a
-                href="https://wa.me/40761627184"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 bg-cta-wa hover:bg-cta-wa-hover text-white font-semibold rounded-lg transition-all"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                WhatsApp
-              </a>
-            </div>
-          </div>
-        )}
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          aria-controls="meniu-mobil"
+          aria-label={open ? "Închide meniul" : "Deschide meniul"}
+          className="rounded-full p-2 md:hidden"
+        >
+          {open ? <X className="h-7 w-7" aria-hidden /> : <Menu className="h-7 w-7" aria-hidden />}
+        </button>
       </div>
-    </nav>
+
+      {open && (
+        <div id="meniu-mobil" className="border-t border-ink/10 bg-paper px-5 pb-6 pt-4 md:hidden">
+          <nav aria-label="Meniu mobil" className="flex flex-col">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="border-b border-ink/10 py-4 font-display text-2xl font-bold uppercase"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="mt-6 flex flex-col gap-3">
+            <a href={SITE.phoneHref} className="btn-primary">
+              <Phone className="h-5 w-5" aria-hidden />
+              Sună la atelier
+            </a>
+            <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="btn-outline">
+              Scrie pe WhatsApp
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
   );
 }
-

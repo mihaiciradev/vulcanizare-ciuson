@@ -1,93 +1,63 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Barlow_Condensed, Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import MobileActionBar from "@/components/MobileActionBar";
 import Navbar from "@/components/Navbar";
-import { faqs } from "@/lib/faq";
 import { Toaster } from "sonner";
+import { faqs } from "@/lib/faq";
+import { isOfferActive } from "@/lib/offer";
+import { SITE } from "@/lib/site";
+
+export const revalidate = 3600;
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
   display: "swap",
 });
 
-const SITE_URL = "https://ciuson.ro";
-const HOME_URL = "https://ciuson.ro/";
-const GA_MEASUREMENT_ID = "G-CBZQP2M8Z3";
-const BUSINESS_NAME = "Vulcanizare Ciuson";
-const PHONE = "+40761627184";
-const GEO = { lat: 45.688397, lng: 21.171664 };
-const STREET = "DN59 km 9+700";
-const CITY = "Timișoara";
-const REGION = "Timiș";
+const barlow = Barlow_Condensed({
+  subsets: ["latin", "latin-ext"],
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
-  themeColor: "#1a1a1a",
+  themeColor: "#F5F3EF",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
   title: {
-    default:
-      "Vulcanizare Timișoara | Ciuson - Anvelope auto, TIR, agricole, Șag",
-    template: "%s | Vulcanizare Ciuson Timișoara",
+    default: "Vulcanizare Ciuson",
+    template: "%s | Ciuson",
   },
   description:
-    "Vulcanizare profesională în Timișoara și Șag. Schimbare și reparații anvelope auto, TIR, industriale și agricole. Vulcanizare mobilă pe DN59. Sună: +40 761 627 184.",
-  keywords: [
-    "vulcanizare timisoara",
-    "vulcanizare",
-    "vulcanizare sag",
-    "vulcanizare mobila timisoara",
-    "schimbare anvelope timisoara",
-    "reparatii anvelope timisoara",
-    "anvelope tir timisoara",
-    "anvelope agricole timisoara",
-    "anvelope industriale timisoara",
-    "vulcanizare aproape de mine",
-    "vulcanizare DN59",
-    "ciuson vulcanizare",
-    "vulcanizare timis",
-    "spalatorie auto timisoara",
-  ],
-  authors: [{ name: BUSINESS_NAME, url: SITE_URL }],
-  creator: BUSINESS_NAME,
-  publisher: BUSINESS_NAME,
-  applicationName: BUSINESS_NAME,
+    "Schimbăm, echilibrăm și reparăm anvelope la atelierul Ciuson, pe DN59, între Timișoara și Șag. Vulcanizare mobilă la fața locului.",
+  applicationName: "Ciuson",
+  authors: [{ name: "Ciuson", url: SITE.url }],
   category: "Automotive",
-  metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
     locale: "ro_RO",
-    siteName: BUSINESS_NAME,
-    title:
-      "Vulcanizare Timișoara — Ciuson | Anvelope auto, TIR, agricole",
-    description:
-      "Vulcanizare în Timișoara și Șag. Anvelope auto, TIR, agricole și industriale. Mobilă pe DN59. Sună +40 761 627 184.",
+    siteName: "Ciuson",
     images: [
       {
         url: "/metadata-social.png",
         width: 1200,
         height: 630,
-        alt: "Vulcanizare Ciuson Timișoara — service anvelope",
+        alt: "Vulcanizare Ciuson, DN59 între Timișoara și Șag",
       },
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Vulcanizare Ciuson Timișoara — Auto, TIR, Agricole",
-    description:
-      "Vulcanizare Timișoara, Șag. Anvelope auto/TIR/agricole. +40 761 627 184",
-    images: ["/metadata-social.png"],
   },
   robots: {
     index: true,
     follow: true,
-    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -100,137 +70,60 @@ export const metadata: Metadata = {
     google: "google4a53b1bac6f1b89c",
   },
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/images/logo.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/favicon.ico", sizes: "any" }],
     apple: "/apple-touch-icon.png",
   },
   other: {
     "geo.region": "RO-TM",
     "geo.placename": "Timișoara",
-    "geo.position": `${GEO.lat};${GEO.lng}`,
-    ICBM: `${GEO.lat}, ${GEO.lng}`,
+    "geo.position": `${SITE.geo.lat};${SITE.geo.lng}`,
+    ICBM: `${SITE.geo.lat}, ${SITE.geo.lng}`,
   },
 };
 
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": ["AutoRepair", "TireShop", "LocalBusiness"],
-  "@id": `${SITE_URL}#business`,
-  name: BUSINESS_NAME,
-  legalName: "Vulcanizare Ciuson - Anvelope Agricole TIR și Industriale",
-  alternateName: ["Ciuson Service", "Ciuson Vulcanizare"],
-  url: HOME_URL,
-  logo: `${SITE_URL}/images/logo.svg`,
-  image: [
-    `${SITE_URL}/hero_img.webp`,
-    `${SITE_URL}/metadata-social.png`,
-  ],
+  "@id": `${SITE.url}/#business`,
+  name: "Vulcanizare Ciuson",
+  alternateName: ["Ciuson", "Ciuson Service", "Ciuson Vulcanizare"],
+  url: `${SITE.url}/`,
+  logo: `${SITE.url}/images/logo-ciuson.png`,
+  image: [`${SITE.url}/hero_img.webp`, `${SITE.url}/metadata-social.png`],
   description:
-    "Service profesional de vulcanizare în Timișoara și Șag. Schimbare și reparații anvelope auto, TIR, industriale și agricole. Vulcanizare mobilă pe DN59.",
-  telephone: PHONE,
-  email: "contact@ciuson.ro",
-  priceRange: "$$",
-  currenciesAccepted: "RON, EUR",
-  paymentAccepted: "Cash, Credit Card, Bank Transfer",
+    "Atelier de vulcanizare pe DN59, între Timișoara și Șag. Schimb și echilibrare anvelope, reparații, servicii pentru camioane și utilaje. Vulcanizare mobilă.",
+  telephone: "+40761627184",
   address: {
     "@type": "PostalAddress",
-    streetAddress: STREET,
-    addressLocality: CITY,
-    addressRegion: REGION,
-    postalCode: "300000",
+    streetAddress: "DN59 km 9+700",
+    addressLocality: "Timișoara",
+    addressRegion: "Timiș",
     addressCountry: "RO",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: GEO.lat,
-    longitude: GEO.lng,
+    latitude: SITE.geo.lat,
+    longitude: SITE.geo.lng,
   },
-  hasMap: `https://www.google.com/maps?q=${GEO.lat},${GEO.lng}`,
+  hasMap: SITE.mapsUrl,
   areaServed: [
     { "@type": "City", name: "Timișoara" },
     { "@type": "City", name: "Șag" },
-    { "@type": "City", name: "Chișoda" },
-    { "@type": "City", name: "Dumbrăvița" },
-    { "@type": "City", name: "Moșnița Nouă" },
-    { "@type": "City", name: "Sânmihaiu Român" },
-    { "@type": "AdministrativeArea", name: "Județul Timiș" },
   ],
-  serviceArea: {
-    "@type": "GeoCircle",
-    geoMidpoint: {
-      "@type": "GeoCoordinates",
-      latitude: GEO.lat,
-      longitude: GEO.lng,
-    },
-    geoRadius: 30000,
-  },
   sameAs: [
     "https://www.facebook.com/vulcanizareciuson",
-    "https://www.google.com/maps/place//data=!4m2!3m1!1s0x47455d8d5db8aafb:0x95407ff170160231",
-  ],
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Servicii Vulcanizare Ciuson",
-    itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Vulcanizare anvelope auto",
-          description:
-            "Schimbare și echilibrare anvelope autoturisme în Timișoara.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Vulcanizare mobilă",
-          description:
-            "Intervenție mobilă pe DN59 și în zona Timișoara și Șag.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Reparații anvelope TIR și agricole",
-          description:
-            "Reparații la cald și la rece pentru anvelope TIR, industriale și agricole.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Spălătorie auto",
-          description:
-            "Spălătorie auto profesională în Timișoara.",
-        },
-      },
-    ],
-  },
-  contactPoint: [
-    {
-      "@type": "ContactPoint",
-      telephone: PHONE,
-      contactType: "customer service",
-      areaServed: "RO",
-      availableLanguage: ["ro", "en"],
-    },
+    SITE.mapsUrl,
   ],
 };
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": `${SITE_URL}#website`,
-  url: HOME_URL,
-  name: BUSINESS_NAME,
+  "@id": `${SITE.url}/#website`,
+  url: `${SITE.url}/`,
+  name: "Ciuson",
   inLanguage: "ro-RO",
-  publisher: { "@id": `${SITE_URL}#business` },
+  publisher: { "@id": `${SITE.url}/#business` },
 };
 
 const faqJsonLd = {
@@ -239,10 +132,7 @@ const faqJsonLd = {
   mainEntity: faqs.map((item) => ({
     "@type": "Question",
     name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
   })),
 };
 
@@ -252,31 +142,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ro" className={inter.variable}>
+    <html lang="ro" className={`${inter.variable} ${barlow.variable}`}>
       <head>
-        <link rel="canonical" href={HOME_URL} />
-        <link rel="alternate" hrefLang="ro-RO" href={HOME_URL} />
-        <link rel="alternate" hrefLang="x-default" href={HOME_URL} />
-        <meta property="og:url" content={HOME_URL} />
         <link rel="manifest" href="/manifest.webmanifest" />
         <meta name="format-detection" content="telephone=yes" />
         <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${GA_MEASUREMENT_ID}');`,
-          }}
-        />
-        <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessJsonLd),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <script
           type="application/ld+json"
@@ -288,10 +160,11 @@ gtag('config', '${GA_MEASUREMENT_ID}');`,
         />
       </head>
 
-      <body className="font-sans antialiased bg-dark-bg text-text-light min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
+      <body className="flex min-h-screen flex-col">
+        <Navbar offerActive={isOfferActive()} />
+        <main className="flex-1 pb-20 md:pb-0">{children}</main>
         <Footer />
+        <MobileActionBar />
         <Toaster />
       </body>
     </html>

@@ -1,61 +1,63 @@
 import Image from "next/image";
-import { MessageCircle } from "lucide-react";
+import Link from "next/link";
+import { SITE, whatsappUrl } from "@/lib/site";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-dark-bg border-t border-orange/10 mt-12 sm:mt-16 md:mt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
-        <div className="flex flex-col items-center justify-center gap-8">
-          {/* Logo */}
-          <div className="flex items-center justify-center">
-            <Image
-              src="/images/logo.svg"
-              alt="Ciuson Service"
-              width={160}
-              height={80}
-              className="w-40 h-20 sm:w-48 sm:h-24 object-contain"
-            />
-          </div>
-
-          {/* Divider */}
-          <div className="w-12 h-1 bg-orange rounded-full" />
-
-          {/* Service area */}
-          <p className="text-sm sm:text-base text-text-muted text-center max-w-2xl">
-            Vulcanizare în <strong className="text-text-light">Timișoara</strong>{" "}
-            și <strong className="text-text-light">Șag</strong>. Anvelope auto,
-            TIR, industriale și agricole. DN59 km 9+700.
+    <footer className="bg-paper-2">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-3 md:py-20">
+        <div>
+          <Image
+            src="/images/logo-ciuson.png"
+            alt="Ciuson"
+            width={720}
+            height={348}
+            className="h-14 w-auto"
+          />
+          <p className="mt-5 max-w-xs text-base leading-relaxed text-muted">
+            Atelier de vulcanizare pe DN59, între Timișoara și Șag.
           </p>
-
-          {/* Copyright */}
-          <p className="text-sm sm:text-base text-text-muted text-center">
-            © {currentYear} Ciuson Service Vulcanizare. Toate drepturile
-            rezervate.
-          </p>
-
-          {/* Links */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-text-muted">
-            <a href="tel:+40761627184" className="hover:text-orange transition-colors">
-              Sună acum
-            </a>
-            <span className="text-text-muted/30">•</span>
-            <a href="https://wa.me/40761627184" target="_blank" rel="noopener noreferrer" className="hover:text-green-500 transition-colors inline-flex items-center gap-1">
-              <MessageCircle className="w-3 h-3" />
-              WhatsApp
-            </a>
-            <span className="text-text-muted/30">•</span>
-            <a href="#services" className="hover:text-orange transition-colors">
-              Servicii
-            </a>
-          </div>
         </div>
+
+        <div className="text-base">
+          <p className="font-bold uppercase tracking-wide">Contact</p>
+          <a href={SITE.phoneHref} className="mt-3 block font-display text-3xl font-bold hover:text-brand">
+            {SITE.phone}
+          </a>
+          <a
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 block font-semibold underline underline-offset-4 hover:text-brand"
+          >
+            Scrie pe WhatsApp
+          </a>
+          <a
+            href={SITE.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 block font-semibold underline underline-offset-4 hover:text-brand"
+          >
+            {SITE.address}
+          </a>
+        </div>
+
+        <nav aria-label="Subsol" className="flex flex-col gap-3 text-base font-semibold">
+          <p className="font-bold uppercase tracking-wide">Pagini</p>
+          <Link href="/#servicii" className="hover:text-brand">Servicii</Link>
+          <Link href="/vulcanizare-mobila-timisoara" className="hover:text-brand">Vulcanizare mobilă</Link>
+          <Link href="/oferte/schimb-anvelope" className="hover:text-brand">Oferta de schimb</Link>
+          <Link href="/#locatie" className="hover:text-brand">Locație</Link>
+        </nav>
       </div>
 
-      {/* Bottom gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange/20 to-transparent" />
+      <div className="border-t border-ink/10">
+        <p className="mx-auto max-w-7xl px-5 py-6 text-sm text-muted sm:px-8">
+          © {year} Ciuson. Toate drepturile rezervate.
+        </p>
+      </div>
     </footer>
   );
 }
-
