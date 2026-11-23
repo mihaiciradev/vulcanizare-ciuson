@@ -3,7 +3,6 @@ import Faq from "@/components/Faq";
 import Hero from "@/components/Hero";
 import Location from "@/components/Location";
 import MobileTeaser from "@/components/MobileTeaser";
-import OfferBanner from "@/components/OfferBanner";
 import Services from "@/components/Services";
 import { isOfferActive } from "@/lib/offer";
 
@@ -19,11 +18,10 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Hero />
-      {isOfferActive() && <OfferBanner />}
+      <Hero offerActive={isOfferActive()} />
+      <Location />
       <Services />
       <MobileTeaser />
-      <Location />
       <Faq />
     </>
   );

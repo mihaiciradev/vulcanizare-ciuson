@@ -2,8 +2,12 @@ import { SITE, whatsappUrl } from "@/lib/site";
 
 export default function Location() {
   return (
-    <section id="locatie" aria-labelledby="locatie-titlu" className="scroll-mt-20 py-20 md:py-28">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:items-center lg:gap-16">
+    <section id="locatie" aria-labelledby="locatie-titlu" className="scroll-mt-20 pb-20 md:pb-28">
+      <div
+        aria-hidden
+        className="h-2 w-full bg-[repeating-linear-gradient(90deg,#E80D13_0_36px,transparent_36px_56px)]"
+      />
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 pt-20 sm:px-8 md:pt-28 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div>
           <h2 id="locatie-titlu" className="font-display text-5xl font-extrabold uppercase leading-none md:text-7xl">
             Ne găsești pe DN59
