@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Barlow_Condensed, Inter } from "next/font/google";
 import "../globals.css";
 import Footer from "@/components/Footer";
+import GoogleAdsTag from "@/components/GoogleAdsTag";
 import MobileActionBar from "@/components/MobileActionBar";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "sonner";
@@ -161,6 +162,7 @@ export default function RootLayout({ children, params }: { children: React.React
         <Footer locale={locale} t={t} />
         <MobileActionBar t={t} />
         <Toaster />
+        <GoogleAdsTag />
       </body>
     </html>
   );

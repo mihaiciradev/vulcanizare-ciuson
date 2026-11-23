@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ConversionLink from "@/components/ConversionLink";
+import { CONVERSIONS } from "@/lib/ads";
 import { getDictionary } from "@/lib/dictionaries";
 import { languageAlternates, pageHref, sectionHref, toLocale } from "@/lib/i18n";
 import { isOfferActive } from "@/lib/offer";
@@ -61,15 +63,21 @@ export default function OfferPage({ params }: Params) {
         <p className="mt-4 text-lg leading-relaxed">{t.terms}</p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href={SITE.phoneHref} className="btn-primary">
+          <ConversionLink href={SITE.phoneHref} sendTo={CONVERSIONS.offerCall} className="btn-primary">
             {dict.common.callWorkshop}
-          </a>
+          </ConversionLink>
           <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="btn-outline">
             {dict.common.whatsapp}
           </a>
-          <a href={SITE.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">
+          <ConversionLink
+            href={SITE.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            sendTo={CONVERSIONS.offerDirections}
+            className="btn-outline"
+          >
             {t.directions}
-          </a>
+          </ConversionLink>
         </div>
 
         <div className="mt-16 border-t-4 border-ink pt-8">
