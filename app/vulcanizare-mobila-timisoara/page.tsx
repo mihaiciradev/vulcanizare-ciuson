@@ -16,7 +16,7 @@ export default function VulcanizareMobila() {
   return (
     <article>
       <section className="bg-ink text-paper">
-        <div className="mx-auto max-w-4xl px-5 pb-16 pt-28 sm:px-8 md:pt-36">
+        <div className="mx-auto max-w-4xl px-5 pb-16 pt-32 sm:px-8 md:pt-40">
           <h1 className="font-display text-[3.2rem] font-extrabold uppercase leading-[0.92] sm:text-7xl">
             Vulcanizare mobilă în Timișoara și împrejurimi
           </h1>

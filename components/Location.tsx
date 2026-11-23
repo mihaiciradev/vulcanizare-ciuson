@@ -2,7 +2,7 @@ import { SITE, whatsappUrl } from "@/lib/site";
 
 export default function Location() {
   return (
-    <section id="locatie" aria-labelledby="locatie-titlu" className="scroll-mt-20 pb-20 md:pb-28">
+    <section id="locatie" aria-labelledby="locatie-titlu" className="scroll-mt-28 pb-20 md:pb-28">
       <div
         aria-hidden
         className="h-2 w-full bg-[repeating-linear-gradient(90deg,#E80D13_0_36px,transparent_36px_56px)]"

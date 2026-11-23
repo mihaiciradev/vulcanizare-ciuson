@@ -14,7 +14,7 @@ export default function Footer() {
             alt="Ciuson"
             width={720}
             height={348}
-            className="h-14 w-auto"
+            className="h-20 w-auto md:h-24"
           />
           <p className="mt-5 max-w-xs text-base leading-relaxed text-muted">
             Atelier de vulcanizare pe DN59, între Timișoara și Șag.
@@ -48,7 +48,7 @@ export default function Footer() {
           <p className="font-bold uppercase tracking-wide">Pagini</p>
           <Link href="/#servicii" className="hover:text-brand">Servicii</Link>
           <Link href="/vulcanizare-mobila-timisoara" className="hover:text-brand">Vulcanizare mobilă</Link>
-          <Link href="/oferte/schimb-anvelope" className="hover:text-brand">Oferta de schimb</Link>
+          <Link href="/oferte/schimb-anvelope" className="hover:text-brand">Oferta 1+1</Link>
           <Link href="/#locatie" className="hover:text-brand">Locație</Link>
         </nav>
       </div>

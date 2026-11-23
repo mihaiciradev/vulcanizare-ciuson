@@ -4,7 +4,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 6.5rem;
 }
 
 body {
@@ -37,14 +37,78 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+/* Hero entrance. Pure CSS so the server HTML already carries it. */
+.reveal-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.reveal-line > span {
+  display: block;
+  animation: reveal-rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+.fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+.zoom-settle {
+  animation: zoom-settle 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: inherit;
+  animation: live-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes reveal-rise {
+  from { transform: translateY(110%); }
+  to { transform: none; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes zoom-settle {
+  from { transform: scale(1.06); }
+  to { transform: none; }
+}
+.scroll-cue-x {
+  animation: scroll-cue-x 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes scroll-cue-x {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(300%); }
+}
+/* Mobile service map: the centre line of the road keeps moving. */
+.route-road {
+  animation: route-dash 1.2s linear infinite;
+}
+@keyframes route-dash {
+  to { stroke-dashoffset: -24; }
+}
+@keyframes live-ping {
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* Desktop screens that are short (laptops, zoomed Windows): drop the vehicle chips so the
+   pinned hero, including the red offer strip at its bottom, fits in one screen. */
+@media (min-width: 768px) and (max-height: 820px) {
+  .hero-tall-only {
+    display: none !important;
   }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+}
+
+/* Hot repair illustration: heat rising from the press. */
+.heat-wave {
+  animation: heat-rise 1.6s ease-in-out infinite;
+}
+@keyframes heat-rise {
+  0% { transform: translateY(8px); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(-14px); opacity: 0; }
 }

@@ -5,7 +5,7 @@ const services = [
   },
   {
     title: "Reparații de anvelope",
-    text: "Reparăm anvelope pentru autoturisme, camioane și utilaje.",
+    text: "Reparăm anvelope pentru autoturisme, camioane și utilaje, inclusiv reparații la cald.",
   },
   {
     title: "Camioane și utilaje",
@@ -15,7 +15,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="servicii" aria-labelledby="servicii-titlu" className="scroll-mt-20 py-20 md:py-28">
+    <section id="servicii" aria-labelledby="servicii-titlu" className="scroll-mt-28 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <h2 id="servicii-titlu" className="font-display text-5xl font-extrabold uppercase leading-none md:text-7xl">
           Ce facem la atelier

@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // WebP only: AVIF is smaller but slow to encode on first request, which made the hero photo pop in late.
+    formats: ["image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
   async redirects() {

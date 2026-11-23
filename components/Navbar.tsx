@@ -10,7 +10,7 @@ export default function Navbar({ offerActive }: { offerActive: boolean }) {
   const [open, setOpen] = useState(false);
 
   const links = [
-    ...(offerActive ? [{ href: "/oferte/schimb-anvelope", label: "Ofertă" }] : []),
+    ...(offerActive ? [{ href: "/oferte/schimb-anvelope", label: "Oferta 1+1" }] : []),
     { href: "/#servicii", label: "Servicii" },
     { href: "/vulcanizare-mobila-timisoara", label: "Vulcanizare mobilă" },
     { href: "/#locatie", label: "Locație" },
@@ -18,7 +18,7 @@ export default function Navbar({ offerActive }: { offerActive: boolean }) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 md:h-20">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 md:h-24">
         <Link href="/" className="shrink-0" aria-label="Ciuson, acasă">
           <Image
             src="/images/logo-ciuson.png"
@@ -26,16 +26,16 @@ export default function Navbar({ offerActive }: { offerActive: boolean }) {
             width={720}
             height={348}
             priority
-            className="h-10 w-auto md:h-12"
+            className="h-14 w-auto md:h-[4.5rem]"
           />
         </Link>
 
-        <nav aria-label="Principal" className="hidden items-center gap-7 md:flex">
+        <nav aria-label="Principal" className="hidden items-center gap-5 md:flex lg:gap-7">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-bold uppercase tracking-wide text-ink/80 hover:text-brand"
+              className="whitespace-nowrap text-sm font-bold uppercase tracking-wide text-ink/80 hover:text-brand"
             >
               {link.label}
             </Link>
@@ -43,15 +43,16 @@ export default function Navbar({ offerActive }: { offerActive: boolean }) {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <a href={SITE.phoneHref} className="btn-primary px-5 py-3 text-sm">
+          <a href={SITE.phoneHref} className="btn-primary whitespace-nowrap px-4 py-3 text-sm lg:px-5">
             <Phone className="h-4 w-4" aria-hidden />
-            {SITE.phone}
+            <span className="lg:hidden">Sună</span>
+            <span className="hidden lg:inline">{SITE.phone}</span>
           </a>
           <a
             href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-outline px-5 py-3 text-sm"
+            className="btn-outline hidden px-5 py-3 text-sm lg:inline-flex"
           >
             WhatsApp
           </a>

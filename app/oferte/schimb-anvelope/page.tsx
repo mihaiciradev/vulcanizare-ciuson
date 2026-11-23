@@ -5,7 +5,7 @@ import { SITE, whatsappUrl } from "@/lib/site";
 
 export const revalidate = 3600;
 
-const TITLE_ACTIVE = "Ofertă schimb anvelope pentru a doua mașină | Ciuson";
+const TITLE_ACTIVE = "Oferta 1+1: 20% la schimbul pentru a doua mașină | Ciuson";
 const TITLE_ENDED = "Oferta s-a încheiat | Ciuson";
 
 export function generateMetadata(): Metadata {
@@ -14,7 +14,7 @@ export function generateMetadata(): Metadata {
     title: { absolute: active ? TITLE_ACTIVE : TITLE_ENDED },
     description: active
       ? "Vii cu două mașini? Ai 20% reducere la manopera de schimb pentru a doua. Valabilă până pe 20 decembrie inclusiv."
-      : "Oferta de schimb pentru a doua mașină s-a încheiat. Vezi serviciile atelierului Ciuson, pe DN59.",
+      : "Oferta 1+1 pentru a doua mașină s-a încheiat. Vezi serviciile atelierului Ciuson, pe DN59.",
     alternates: { canonical: "/oferte/schimb-anvelope" },
     robots: active ? { index: true, follow: true } : { index: false, follow: true },
   };
@@ -25,12 +25,12 @@ export default function OfertaSchimbAnvelope() {
 
   if (!active) {
     return (
-      <section className="mx-auto max-w-3xl px-5 pb-24 pt-32 sm:px-8">
+      <section className="mx-auto max-w-3xl px-5 pb-24 pt-36 sm:px-8">
         <h1 className="font-display text-5xl font-extrabold uppercase leading-none md:text-7xl">
           Oferta s-a încheiat
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-muted">
-          Oferta de schimb pentru a doua mașină nu mai este valabilă. Atelierul Ciuson rămâne deschis pentru schimb și echilibrare, reparații de anvelope, camioane și utilaje.
+          Oferta 1+1 pentru a doua mașină nu mai este valabilă. Atelierul Ciuson rămâne deschis pentru schimb și echilibrare, reparații de anvelope, camioane și utilaje.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link href="/#servicii" className="btn-primary">
@@ -47,8 +47,8 @@ export default function OfertaSchimbAnvelope() {
   return (
     <article>
       <section className="bg-ink text-paper">
-        <div className="mx-auto max-w-4xl px-5 pb-16 pt-28 sm:px-8 md:pt-36">
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-brand">{OFFER.validUntil}</p>
+        <div className="mx-auto max-w-4xl px-5 pb-16 pt-32 sm:px-8 md:pt-40">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-brand">Oferta 1+1 · {OFFER.validUntil}</p>
           <h1 className="mt-4 font-display text-[3.2rem] font-extrabold uppercase leading-[0.92] sm:text-7xl">
             Vii cu două mașini? Ai 20% reducere la manopera de schimb pentru a doua.
           </h1>
