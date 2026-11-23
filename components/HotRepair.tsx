@@ -11,17 +11,11 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { MessageCircle, Phone } from "lucide-react";
+import type { Dictionary } from "@/lib/dictionaries";
 import { SITE, whatsappUrl } from "@/lib/site";
 
-const WHATSAPP_MESSAGE =
-  "Bună ziua, am o anvelopă deteriorată. Vă trimit o poză, să-mi spuneți dacă se poate repara la cald.";
-
-const STEPS = [
-  { title: "Evaluăm deteriorarea", text: "Îți spunem dacă anvelopa se poate repara." },
-  { title: "Pregătim zona", text: "Curățăm și șlefuim marginile tăieturii." },
-  { title: "Umplem cu cauciuc crud", text: "Material nou, pus exact unde lipsește." },
-  { title: "Vulcanizăm la cald", text: "Căldura și presiunea leagă cauciucul de anvelopă." },
-];
+type StepText = { title: string; text: string };
+const STEP_COUNT = 4;
 
 /**
  * Scroll breakpoints. Passing one starts the next stage, which then plays at its own pace.
@@ -42,9 +36,9 @@ const TREAD_ANGLES = Array.from({ length: 23 }, (_, i) => -33 + i * 3);
 const CUT =
   "M287 206 L300 222 L291 240 L306 258 L294 276 L307 294 L298 318 L316 318 L326 294 L313 276 L326 258 L311 240 L320 222 L306 206 Z";
 
-function Step({ index, stage, step }: { index: number; stage: number; step: (typeof STEPS)[number] }) {
+function Step({ index, stage, step }: { index: number; stage: number; step: StepText }) {
   // The current step is fully lit; the final "done" stage keeps the last step lit.
-  const current = index === Math.min(stage, STEPS.length - 1);
+  const current = index === Math.min(stage, STEP_COUNT - 1);
   const reached = index <= stage;
   return (
     <li
@@ -68,7 +62,7 @@ function Step({ index, stage, step }: { index: number; stage: number; step: (typ
   );
 }
 
-function RepairIllustration({ progress }: { progress: MotionValue<number> }) {
+function RepairIllustration({ progress, title }: { progress: MotionValue<number>; title: string }) {
   // 2. Prepare: the edge of the cut is traced.
   const traceOffset = useTransform(progress, [0.12, 0.3], [1, 0]);
   const traceOpacity = useTransform(progress, [0.1, 0.14, 0.55, 0.62], [0, 1, 1, 0]);
@@ -84,7 +78,7 @@ function RepairIllustration({ progress }: { progress: MotionValue<number> }) {
   return (
     <svg viewBox="0 0 600 440" className="h-auto w-full" role="img" aria-labelledby="ilustratie-titlu">
       <title id="ilustratie-titlu">
-        Reparație la cald: tăietura din anvelopă este umplută cu cauciuc crud și vulcanizată sub presiune.
+        {title}
       </title>
       <defs>
         <radialGradient id="heat" cx="50%" cy="50%" r="50%">
@@ -166,7 +160,9 @@ function RepairIllustration({ progress }: { progress: MotionValue<number> }) {
   );
 }
 
-export default function HotRepair() {
+type Props = { t: Dictionary["hotRepair"]; common: Dictionary["common"] };
+
+export default function HotRepair({ t, common }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start 0.2", "end end"] });
   const [stage, setStage] = useState(0);
@@ -192,16 +188,15 @@ export default function HotRepair() {
     <section ref={sectionRef} id="reparatii-la-cald" aria-labelledby="cald-titlu" className="scroll-mt-28 bg-paper-2 py-20 md:py-28">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:items-start lg:gap-16">
         <div className="lg:col-span-5">
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-brand">Reparații la cald</p>
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-brand">{t.eyebrow}</p>
           <h2
             id="cald-titlu"
             className="mt-4 font-display text-[clamp(2.8rem,6vw,5.5rem)] font-extrabold uppercase leading-[0.88]"
           >
-            O anvelopă tăiată nu e neapărat de aruncat
+            {t.title}
           </h2>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-            Facem reparații de anvelope la cald. Zona deteriorată se umple cu cauciuc crud, care se vulcanizează sub
-            presiune și devine una cu anvelopa. Merită mai ales la anvelopele mari, de camion, tractor sau utilaj.
+            {t.text}
           </p>
 
           <ol className="relative mt-10">
@@ -211,19 +206,19 @@ export default function HotRepair() {
               style={{ scaleY: lineScale }}
               className="absolute bottom-5 left-5 top-5 w-[2px] origin-top -translate-x-1/2 bg-brand"
             />
-            {STEPS.map((step, index) => (
+            {t.steps.map((step, index) => (
               <Step key={step.title} index={index} stage={stage} step={step} />
             ))}
           </ol>
 
           <div className="mt-10 grid gap-3 sm:flex sm:flex-wrap">
-            <a href={whatsappUrl(WHATSAPP_MESSAGE)} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            <a href={whatsappUrl(t.whatsappMessage)} target="_blank" rel="noopener noreferrer" className="btn-primary">
               <MessageCircle className="h-5 w-5" aria-hidden />
-              Trimite o poză pe WhatsApp
+              {t.photoCta}
             </a>
             <a href={SITE.phoneHref} className="btn-outline">
               <Phone className="h-5 w-5" aria-hidden />
-              Sună la atelier
+              {common.callWorkshop}
             </a>
           </div>
         </div>
@@ -232,7 +227,7 @@ export default function HotRepair() {
           <div
             className="overflow-hidden rounded-[1.75rem] bg-paper shadow-[0_40px_90px_-45px_rgba(0,0,0,0.45)]"
           >
-            <RepairIllustration progress={phase} />
+            <RepairIllustration progress={phase} title={t.illustrationTitle} />
           </div>
         </div>
       </div>

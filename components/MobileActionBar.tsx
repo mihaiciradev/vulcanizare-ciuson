@@ -1,15 +1,16 @@
 import { MapPin, MessageCircle, Phone } from "lucide-react";
+import type { Dictionary } from "@/lib/dictionaries";
 import { SITE, whatsappUrl } from "@/lib/site";
 
-export default function MobileActionBar() {
+export default function MobileActionBar({ t }: { t: Dictionary }) {
   return (
     <nav
-      aria-label="Contact rapid"
+      aria-label={t.actionBar.aria}
       className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 gap-px bg-ink pb-[env(safe-area-inset-bottom)] md:hidden"
     >
       <a href={SITE.phoneHref} className="flex flex-col items-center gap-1 bg-brand py-3 text-sm font-bold text-white">
         <Phone className="h-5 w-5" aria-hidden />
-        Sună
+        {t.common.call}
       </a>
       <a
         href={whatsappUrl()}
@@ -27,7 +28,7 @@ export default function MobileActionBar() {
         className="flex flex-col items-center gap-1 bg-paper py-3 text-sm font-bold text-ink"
       >
         <MapPin className="h-5 w-5" aria-hidden />
-        Traseu
+        {t.actionBar.directions}
       </a>
     </nav>
   );

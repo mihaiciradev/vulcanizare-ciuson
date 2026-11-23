@@ -15,6 +15,8 @@ import {
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import OfferMarquee from "@/components/OfferMarquee";
 import tiresPhoto from "@/public/images/tires.jpg";
+import type { Dictionary } from "@/lib/dictionaries";
+import { pageHref, type Locale } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
 
 // Called right after mount so three.js downloads while the entrance plays.
@@ -36,14 +38,6 @@ function hasWebGL() {
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 
-const OFFER_ITEMS = [
-  "20% reducere la manopera pentru a doua mașină",
-  "Vino cu ambele mașini împreună",
-  "Valabilă până pe 20 decembrie",
-];
-
-const VEHICLES = ["Autoturisme", "Camioane și TIR", "Agricole", "Industriale"];
-
 function RoadLine({ className = "" }: { className?: string }) {
   return (
     <div
@@ -53,7 +47,14 @@ function RoadLine({ className = "" }: { className?: string }) {
   );
 }
 
-export default function Hero({ offerActive }: { offerActive: boolean }) {
+type Props = {
+  locale: Locale;
+  t: Dictionary["hero"];
+  common: Dictionary["common"];
+  offerActive: boolean;
+};
+
+export default function Hero({ locale, t, common, offerActive }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const photoRef = useRef<HTMLDivElement>(null);
   const wheelDrives = useRef(false);
@@ -131,7 +132,7 @@ export default function Hero({ offerActive }: { offerActive: boolean }) {
               style={delay(0)}
             >
               <span aria-hidden className="live-dot relative h-2.5 w-2.5 rounded-full bg-brand" />
-              DN59 km 9+700, între Timișoara și Șag
+              {t.eyebrow}
             </p>
 
             <h1
@@ -139,25 +140,25 @@ export default function Hero({ offerActive }: { offerActive: boolean }) {
               className="mt-5 font-display text-[clamp(3.1rem,min(6.6vw,10svh),6.5rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.01em]"
             >
               <span className="reveal-line">
-                <span style={delay(120)}>Vulcanizare</span>
+                <span style={delay(120)}>{t.titleLine1}</span>
               </span>
               <span className="reveal-line">
-                <span style={delay(220)}>în Timișoara</span>
+                <span style={delay(220)}>{t.titleLine2}</span>
               </span>
               <span className="reveal-line">
                 <span style={delay(320)}>
-                  și <span className="text-brand">Șag</span>
+                  {t.titleLine3} <span className="text-brand">{t.titleAccent}</span>
                 </span>
               </span>
             </h1>
 
             <p className="fade-up mt-6 max-w-md text-base leading-relaxed text-muted sm:text-lg" style={delay(480)}>
-              Schimbăm, echilibrăm și reparăm anvelope, de la mașina de familie la camion și tractor.
+              {t.lead}
             </p>
 
             <div className="fade-up mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap" style={delay(580)}>
               <a href={SITE.phoneHref} className="btn-primary group px-4 text-[15px] sm:px-7 sm:text-base">
-                Sună la atelier
+                {common.callWorkshop}
                 <span
                   aria-hidden
                   className="hidden transition-transform duration-300 group-hover:translate-x-1 sm:inline"
@@ -171,12 +172,12 @@ export default function Hero({ offerActive }: { offerActive: boolean }) {
                 rel="noopener noreferrer"
                 className="btn-outline px-4 text-[15px] sm:px-7 sm:text-base"
               >
-                Vezi traseul
+                {common.directions}
               </a>
             </div>
 
-            <ul className="fade-up hero-tall-only mt-8 hidden flex-wrap gap-2 sm:flex" style={delay(680)} aria-label="Vehicule">
-              {VEHICLES.map((vehicle) => (
+            <ul className="fade-up hero-tall-only mt-8 hidden flex-wrap gap-2 sm:flex" style={delay(680)} aria-label={t.vehiclesAria}>
+              {t.vehicles.map((vehicle) => (
                 <li
                   key={vehicle}
                   className="rounded-full border border-ink/15 bg-white/60 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-ink/75"
@@ -195,7 +196,7 @@ export default function Hero({ offerActive }: { offerActive: boolean }) {
               <span className="relative h-[2px] w-12 overflow-hidden rounded-full bg-ink/15">
                 <span className="scroll-cue-x absolute inset-y-0 left-0 w-4 rounded-full bg-brand" />
               </span>
-              {offerActive ? "Derulează pentru Oferta 1+1" : "Derulează"}
+              {offerActive ? t.scrollHintOffer : t.scrollHint}
             </motion.div>
           </div>
 
@@ -210,7 +211,7 @@ export default function Hero({ offerActive }: { offerActive: boolean }) {
                 <motion.div style={{ y: photoY }} className="absolute -inset-y-[5%] inset-x-0">
                   <Image
                     src={tiresPhoto}
-                    alt="Anvelope și jante în atelierul Ciuson"
+                    alt={t.photoAlt}
                     fill
                     priority
                     placeholder="blur"
@@ -225,7 +226,7 @@ export default function Hero({ offerActive }: { offerActive: boolean }) {
                 className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.55),rgba(0,0,0,0.28)_55%,rgba(0,0,0,0.22))]"
               />
               <p className="absolute right-4 top-4 rounded-full bg-paper/90 px-3 py-1.5 text-xs font-bold uppercase tracking-wide backdrop-blur md:right-8 md:top-6">
-                Atelier pe DN59
+                {t.photoBadge}
               </p>
 
               {/* Revealed behind the rolling wheel. */}
@@ -240,26 +241,25 @@ export default function Hero({ offerActive }: { offerActive: boolean }) {
                   {offerActive ? (
                     <>
                       <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/80 sm:text-sm">
-                        Oferta 1+1
+                        {t.panelEyebrow}
                       </p>
                       <h2 className="mt-2 font-display text-[clamp(2.1rem,5.6vw,6rem)] font-extrabold uppercase leading-[0.86] sm:mt-4">
-                        20% la a doua mașină
+                        {t.panelTitle}
                       </h2>
                       <p className="mt-4 hidden max-w-md text-base leading-relaxed text-white/90 sm:block lg:text-lg">
-                        Reducere la manopera de schimb când vii cu ambele mașini împreună. Valabilă până pe 20
-                        decembrie inclusiv.
+                        {t.panelText}
                       </p>
-                      <Link href="/oferte/schimb-anvelope" className="btn-ink mt-4 px-5 py-3 text-sm sm:mt-7 sm:px-7 sm:py-4 sm:text-base">
-                        Vezi oferta
+                      <Link href={pageHref(locale, "offer")} className="btn-ink mt-4 px-5 py-3 text-sm sm:mt-7 sm:px-7 sm:py-4 sm:text-base">
+                        {t.panelCta}
                       </Link>
                     </>
                   ) : (
                     <>
                       <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/70 sm:text-sm">
-                        DN59 km 9+700
+                        {t.endedEyebrow}
                       </p>
                       <h2 className="mt-2 font-display text-[clamp(2.1rem,5.6vw,6rem)] font-extrabold uppercase leading-[0.86] sm:mt-4">
-                        Oprești, schimbi, <span className="text-brand">pleci</span>
+                        {t.endedTitle} <span className="text-brand">{t.endedAccent}</span>
                       </h2>
                       <a
                         href={SITE.mapsUrl}
@@ -267,7 +267,7 @@ export default function Hero({ offerActive }: { offerActive: boolean }) {
                         rel="noopener noreferrer"
                         className="btn-primary mt-4 px-5 py-3 text-sm sm:mt-7 sm:px-7 sm:py-4 sm:text-base"
                       >
-                        Vezi traseul
+                        {common.directions}
                       </a>
                     </>
                   )}
@@ -293,20 +293,19 @@ export default function Hero({ offerActive }: { offerActive: boolean }) {
 
         {offerActive && (
           <Link
-            href="/oferte/schimb-anvelope"
+            href={pageHref(locale, "offer")}
             className="relative z-10 flex items-stretch overflow-hidden bg-brand text-white"
           >
             <span className="sr-only">
-              Oferta 1+1: 20% reducere la manopera de schimb pentru a doua mașină. Vino cu ambele mașini
-              împreună și menționează oferta. Valabilă până pe 20 decembrie inclusiv. Vezi condițiile.
+              {t.marqueeSr}
             </span>
             <span
               aria-hidden
               className="z-10 flex shrink-0 items-center bg-ink px-4 text-xs font-bold uppercase tracking-[0.2em] sm:px-6"
             >
-              Oferta 1+1
+              {t.marqueeTab}
             </span>
-            <OfferMarquee items={OFFER_ITEMS} />
+            <OfferMarquee items={t.marqueeItems} />
           </Link>
         )}
       </div>
